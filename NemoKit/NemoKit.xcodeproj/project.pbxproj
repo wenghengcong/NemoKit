@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5E3EC30522D5BD4900522D45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC30422D5BD4900522D45 /* AppDelegate.m */; };
+		5E3EC30822D5BD4900522D45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC30722D5BD4900522D45 /* ViewController.m */; };
+		5E3EC30B22D5BD4900522D45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E3EC30922D5BD4900522D45 /* Main.storyboard */; };
+		5E3EC30D22D5BD4A00522D45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E3EC30C22D5BD4A00522D45 /* Assets.xcassets */; };
+		5E3EC31022D5BD4A00522D45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E3EC30E22D5BD4A00522D45 /* LaunchScreen.storyboard */; };
+		5E3EC31322D5BD4A00522D45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC31222D5BD4A00522D45 /* main.m */; };
+		5E3EC32822D5CDE200522D45 /* BFWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC32522D5CDE200522D45 /* BFWeakProxy.m */; };
+		5E3EC32922D5CDE200522D45 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC32722D5CDE200522D45 /* NSTimer+Block.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5E3EC30022D5BD4900522D45 /* NemoKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemoKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E3EC30322D5BD4900522D45 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5E3EC30422D5BD4900522D45 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5E3EC30622D5BD4900522D45 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5E3EC30722D5BD4900522D45 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5E3EC30A22D5BD4900522D45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5E3EC30C22D5BD4A00522D45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5E3EC30F22D5BD4A00522D45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5E3EC31122D5BD4A00522D45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E3EC31222D5BD4A00522D45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5E3EC32422D5CDE200522D45 /* BFWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWeakProxy.h; sourceTree = "<group>"; };
+		5E3EC32522D5CDE200522D45 /* BFWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWeakProxy.m; sourceTree = "<group>"; };
+		5E3EC32622D5CDE200522D45 /* NSTimer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
+		5E3EC32722D5CDE200522D45 /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E3EC2FD22D5BD4900522D45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E3EC2F722D5BD4900522D45 = {
+			isa = PBXGroup;
+			children = (
+				5E3EC30222D5BD4900522D45 /* NemoKit */,
+				5E3EC30122D5BD4900522D45 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5E3EC30122D5BD4900522D45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E3EC30022D5BD4900522D45 /* NemoKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E3EC30222D5BD4900522D45 /* NemoKit */ = {
+			isa = PBXGroup;
+			children = (
+				5E3EC31922D5BF0000522D45 /* Utils */,
+				5E3EC30322D5BD4900522D45 /* AppDelegate.h */,
+				5E3EC30422D5BD4900522D45 /* AppDelegate.m */,
+				5E3EC30622D5BD4900522D45 /* ViewController.h */,
+				5E3EC30722D5BD4900522D45 /* ViewController.m */,
+				5E3EC30922D5BD4900522D45 /* Main.storyboard */,
+				5E3EC30C22D5BD4A00522D45 /* Assets.xcassets */,
+				5E3EC30E22D5BD4A00522D45 /* LaunchScreen.storyboard */,
+				5E3EC31122D5BD4A00522D45 /* Info.plist */,
+				5E3EC31222D5BD4A00522D45 /* main.m */,
+			);
+			path = NemoKit;
+			sourceTree = "<group>";
+		};
+		5E3EC31922D5BF0000522D45 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5E3EC32422D5CDE200522D45 /* BFWeakProxy.h */,
+				5E3EC32522D5CDE200522D45 /* BFWeakProxy.m */,
+				5E3EC32622D5CDE200522D45 /* NSTimer+Block.h */,
+				5E3EC32722D5CDE200522D45 /* NSTimer+Block.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5E3EC2FF22D5BD4900522D45 /* NemoKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E3EC31622D5BD4A00522D45 /* Build configuration list for PBXNativeTarget "NemoKit" */;
+			buildPhases = (
+				5E3EC2FC22D5BD4900522D45 /* Sources */,
+				5E3EC2FD22D5BD4900522D45 /* Frameworks */,
+				5E3EC2FE22D5BD4900522D45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NemoKit;
+			productName = NemoKit;
+			productReference = 5E3EC30022D5BD4900522D45 /* NemoKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E3EC2F822D5BD4900522D45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = WengHengcong;
+				TargetAttributes = {
+					5E3EC2FF22D5BD4900522D45 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 5E3EC2FB22D5BD4900522D45 /* Build configuration list for PBXProject "NemoKit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5E3EC2F722D5BD4900522D45;
+			productRefGroup = 5E3EC30122D5BD4900522D45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E3EC2FF22D5BD4900522D45 /* NemoKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E3EC2FE22D5BD4900522D45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E3EC31022D5BD4A00522D45 /* LaunchScreen.storyboard in Resources */,
+				5E3EC30D22D5BD4A00522D45 /* Assets.xcassets in Resources */,
+				5E3EC30B22D5BD4900522D45 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E3EC2FC22D5BD4900522D45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E3EC30822D5BD4900522D45 /* ViewController.m in Sources */,
+				5E3EC32922D5CDE200522D45 /* NSTimer+Block.m in Sources */,
+				5E3EC31322D5BD4A00522D45 /* main.m in Sources */,
+				5E3EC32822D5CDE200522D45 /* BFWeakProxy.m in Sources */,
+				5E3EC30522D5BD4900522D45 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5E3EC30922D5BD4900522D45 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E3EC30A22D5BD4900522D45 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5E3EC30E22D5BD4A00522D45 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E3EC30F22D5BD4A00522D45 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5E3EC31422D5BD4A00522D45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5E3EC31522D5BD4A00522D45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E3EC31722D5BD4A00522D45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69XHTLCF36;
+				INFOPLIST_FILE = NemoKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luci.NemoKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5E3EC31822D5BD4A00522D45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69XHTLCF36;
+				INFOPLIST_FILE = NemoKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luci.NemoKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E3EC2FB22D5BD4900522D45 /* Build configuration list for PBXProject "NemoKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E3EC31422D5BD4A00522D45 /* Debug */,
+				5E3EC31522D5BD4A00522D45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E3EC31622D5BD4A00522D45 /* Build configuration list for PBXNativeTarget "NemoKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E3EC31722D5BD4A00522D45 /* Debug */,
+				5E3EC31822D5BD4A00522D45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E3EC2F822D5BD4900522D45 /* Project object */;
+}
