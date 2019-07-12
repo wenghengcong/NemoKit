@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
      - (void)tick:(NSTimer *)timer {...}
  @end
  */
-@interface BFWeakProxy : NSProxy
+@interface HOWeakProxy : NSProxy
 
 /**
  The proxy target.

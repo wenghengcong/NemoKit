@@ -6,9 +6,9 @@
 //  Copyright © 2019 WengHengcong. All rights reserved.
 //
 
-#import "BFWeakProxy.h"
+#import "HOWeakProxy.h"
 
-@implementation BFWeakProxy
+@implementation HOWeakProxy
 
 - (instancetype)initWithTarget:(id)target {
     _target = target;
@@ -16,7 +16,7 @@
 }
 
 + (instancetype)proxyWithTarget:(id)target {
-    return [[BFWeakProxy alloc] initWithTarget:target];
+    return [[HOWeakProxy alloc] initWithTarget:target];
 }
 
 - (id)forwardingTargetForSelector:(SEL)selector {

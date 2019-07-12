@@ -13,8 +13,9 @@
 		5E3EC30D22D5BD4A00522D45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E3EC30C22D5BD4A00522D45 /* Assets.xcassets */; };
 		5E3EC31022D5BD4A00522D45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E3EC30E22D5BD4A00522D45 /* LaunchScreen.storyboard */; };
 		5E3EC31322D5BD4A00522D45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC31222D5BD4A00522D45 /* main.m */; };
-		5E3EC32822D5CDE200522D45 /* BFWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC32522D5CDE200522D45 /* BFWeakProxy.m */; };
+		5E3EC32822D5CDE200522D45 /* HOWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC32522D5CDE200522D45 /* HOWeakProxy.m */; };
 		5E3EC32922D5CDE200522D45 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC32722D5CDE200522D45 /* NSTimer+Block.m */; };
+		5E3EC32D22D6AD1000522D45 /* HOWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3EC32C22D6AD1000522D45 /* HOWeakTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +29,12 @@
 		5E3EC30F22D5BD4A00522D45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E3EC31122D5BD4A00522D45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E3EC31222D5BD4A00522D45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5E3EC32422D5CDE200522D45 /* BFWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWeakProxy.h; sourceTree = "<group>"; };
-		5E3EC32522D5CDE200522D45 /* BFWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWeakProxy.m; sourceTree = "<group>"; };
+		5E3EC32422D5CDE200522D45 /* HOWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOWeakProxy.h; sourceTree = "<group>"; };
+		5E3EC32522D5CDE200522D45 /* HOWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOWeakProxy.m; sourceTree = "<group>"; };
 		5E3EC32622D5CDE200522D45 /* NSTimer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
 		5E3EC32722D5CDE200522D45 /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
+		5E3EC32B22D6AD1000522D45 /* HOWeakTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HOWeakTimer.h; path = ../../../../LearnCollection/OCObject/NSTimerBestPractice/NSTimerBestPractice/HOWeakTimer.h; sourceTree = "<group>"; };
+		5E3EC32C22D6AD1000522D45 /* HOWeakTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HOWeakTimer.m; path = ../../../../LearnCollection/OCObject/NSTimerBestPractice/NSTimerBestPractice/HOWeakTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +84,12 @@
 		5E3EC31922D5BF0000522D45 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				5E3EC32422D5CDE200522D45 /* BFWeakProxy.h */,
-				5E3EC32522D5CDE200522D45 /* BFWeakProxy.m */,
+				5E3EC32422D5CDE200522D45 /* HOWeakProxy.h */,
+				5E3EC32522D5CDE200522D45 /* HOWeakProxy.m */,
 				5E3EC32622D5CDE200522D45 /* NSTimer+Block.h */,
 				5E3EC32722D5CDE200522D45 /* NSTimer+Block.m */,
+				5E3EC32B22D6AD1000522D45 /* HOWeakTimer.h */,
+				5E3EC32C22D6AD1000522D45 /* HOWeakTimer.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -159,10 +164,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E3EC32D22D6AD1000522D45 /* HOWeakTimer.m in Sources */,
 				5E3EC30822D5BD4900522D45 /* ViewController.m in Sources */,
 				5E3EC32922D5CDE200522D45 /* NSTimer+Block.m in Sources */,
 				5E3EC31322D5BD4A00522D45 /* main.m in Sources */,
-				5E3EC32822D5CDE200522D45 /* BFWeakProxy.m in Sources */,
+				5E3EC32822D5CDE200522D45 /* HOWeakProxy.m in Sources */,
 				5E3EC30522D5BD4900522D45 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
