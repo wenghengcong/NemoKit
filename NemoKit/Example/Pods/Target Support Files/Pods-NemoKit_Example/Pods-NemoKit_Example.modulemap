@@ -1,0 +1,6 @@
+framework module Pods_NemoKit_Example {
+  umbrella header "Pods-NemoKit_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
