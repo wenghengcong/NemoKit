@@ -1,2 +1,2 @@
 # NemoKit
-Swift Developement Kit
+Objective-C Developement Kit
