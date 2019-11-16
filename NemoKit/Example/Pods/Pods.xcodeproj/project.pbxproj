@@ -81,19 +81,19 @@
 		5BCE6A3C3798DC89B07C3CD4CAC8CD97 /* KWNull.h in Headers */ = {isa = PBXBuildFile; fileRef = D514FF1A2F5C61A0E1AC879D6D9E6BA9 /* KWNull.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BFF4F31AD167C8256DF656382E89012 /* KWGenericMatchEvaluator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D60196C3FA1E655FD2CB1EDC8CE79D6 /* KWGenericMatchEvaluator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C6C99F70342BB36C5793E7C2B458C64 /* KWContainStringMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E04245CA6412C9DC56B7BBA88954700 /* KWContainStringMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5EC399B822F97F60005DD359 /* NKWeakProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC399AF22F97F5F005DD359 /* NKWeakProxy.h */; };
-		5EC399B922F97F60005DD359 /* NKWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC399B022F97F5F005DD359 /* NKWeakProxy.m */; };
-		5EC399BA22F97F60005DD359 /* NSTimer+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC399B122F97F5F005DD359 /* NSTimer+Block.h */; };
-		5EC399BB22F97F60005DD359 /* NKGCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC399B222F97F5F005DD359 /* NKGCDTimer.m */; };
-		5EC399BC22F97F60005DD359 /* NKGCDTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC399B322F97F5F005DD359 /* NKGCDTimer.h */; };
-		5EC399BD22F97F60005DD359 /* NKDispatchAfter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC399B422F97F60005DD359 /* NKDispatchAfter.h */; };
-		5EC399BE22F97F60005DD359 /* NKPreciseTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC399B522F97F60005DD359 /* NKPreciseTimer.m */; };
-		5EC399BF22F97F60005DD359 /* NKPreciseTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC399B622F97F60005DD359 /* NKPreciseTimer.h */; };
-		5EC399C022F97F60005DD359 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC399B722F97F60005DD359 /* NSTimer+Block.m */; };
-		5EC399C522F97F67005DD359 /* UIView+Corner.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC399C122F97F66005DD359 /* UIView+Corner.h */; };
-		5EC399C622F97F67005DD359 /* UIView+Corner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC399C222F97F66005DD359 /* UIView+Corner.m */; };
-		5EC399C722F97F67005DD359 /* UIImage+Corner.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC399C322F97F66005DD359 /* UIImage+Corner.h */; };
-		5EC399C822F97F67005DD359 /* UIImage+Corner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC399C422F97F66005DD359 /* UIImage+Corner.m */; };
+		5EF4C7DE237F9FFC00C1D584 /* UIImage+Corner.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4C7D0237F9FFC00C1D584 /* UIImage+Corner.h */; };
+		5EF4C7DF237F9FFC00C1D584 /* UIView+Corner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF4C7D1237F9FFC00C1D584 /* UIView+Corner.m */; };
+		5EF4C7E0237F9FFC00C1D584 /* UIImage+Corner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF4C7D2237F9FFC00C1D584 /* UIImage+Corner.m */; };
+		5EF4C7E1237F9FFC00C1D584 /* UIView+Corner.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4C7D3237F9FFC00C1D584 /* UIView+Corner.h */; };
+		5EF4C7E2237F9FFC00C1D584 /* NKWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF4C7D5237F9FFC00C1D584 /* NKWeakProxy.m */; };
+		5EF4C7E3237F9FFC00C1D584 /* NKPreciseTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF4C7D6237F9FFC00C1D584 /* NKPreciseTimer.m */; };
+		5EF4C7E4237F9FFC00C1D584 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF4C7D7237F9FFC00C1D584 /* NSTimer+Block.m */; };
+		5EF4C7E5237F9FFC00C1D584 /* NKGCDTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4C7D8237F9FFC00C1D584 /* NKGCDTimer.h */; };
+		5EF4C7E6237F9FFC00C1D584 /* NKDispatchAfter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4C7D9237F9FFC00C1D584 /* NKDispatchAfter.h */; };
+		5EF4C7E7237F9FFC00C1D584 /* NKWeakProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4C7DA237F9FFC00C1D584 /* NKWeakProxy.h */; };
+		5EF4C7E8237F9FFC00C1D584 /* NKPreciseTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4C7DB237F9FFC00C1D584 /* NKPreciseTimer.h */; };
+		5EF4C7E9237F9FFC00C1D584 /* NSTimer+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF4C7DC237F9FFC00C1D584 /* NSTimer+Block.h */; };
+		5EF4C7EA237F9FFC00C1D584 /* NKGCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF4C7DD237F9FFC00C1D584 /* NKGCDTimer.m */; };
 		5F9A6B1F251E54709B343621609655C6 /* KWReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 643F29B82CA8BFD1B73DAEC2CD38D476 /* KWReporting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		604D3F76D9400BDEFBC6587EE6827933 /* KWBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AEE090DFECDBC72B6830E7AB920EA1 /* KWBlock.m */; };
 		634278532B85AB8514393C79C0F332B6 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = EE163E2B62465541714877C7392DE4AC /* KWSymbolicator.m */; };
@@ -290,7 +290,7 @@
 		116615F7FDD9EF74FFA26DBA4B718B47 /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
 		12A83D318D9DA83C87CE3350A53E1A11 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		131A6499A364D962D8A113FBFCE67337 /* KWRespondToSelectorMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWRespondToSelectorMatcher.m; path = Classes/Matchers/KWRespondToSelectorMatcher.m; sourceTree = "<group>"; };
-		15813F8B56A518B9E06252EA7477029B /* NemoKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = NemoKit.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		15813F8B56A518B9E06252EA7477029B /* NemoKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = NemoKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		164649229850F95B726BEE9C794E56DF /* NSObject+KiwiSpyAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+KiwiSpyAdditions.h"; path = "Classes/Core/NSObject+KiwiSpyAdditions.h"; sourceTree = "<group>"; };
 		1746355FAA4CBEE6AD2579062AEE9587 /* KWWorkarounds.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWWorkarounds.m; path = Classes/Core/KWWorkarounds.m; sourceTree = "<group>"; };
 		195FBD61D3D4313FD0640F4C6ED16DE2 /* KWBeWithinMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeWithinMatcher.m; path = Classes/Matchers/KWBeWithinMatcher.m; sourceTree = "<group>"; };
@@ -357,20 +357,20 @@
 		5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D60196C3FA1E655FD2CB1EDC8CE79D6 /* KWGenericMatchEvaluator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWGenericMatchEvaluator.h; path = Classes/Matchers/KWGenericMatchEvaluator.h; sourceTree = "<group>"; };
 		5E601BD54DA9BF4071437E60125281FA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		5EC399AF22F97F5F005DD359 /* NKWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKWeakProxy.h; sourceTree = "<group>"; };
-		5EC399B022F97F5F005DD359 /* NKWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKWeakProxy.m; sourceTree = "<group>"; };
-		5EC399B122F97F5F005DD359 /* NSTimer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
-		5EC399B222F97F5F005DD359 /* NKGCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKGCDTimer.m; sourceTree = "<group>"; };
-		5EC399B322F97F5F005DD359 /* NKGCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKGCDTimer.h; sourceTree = "<group>"; };
-		5EC399B422F97F60005DD359 /* NKDispatchAfter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKDispatchAfter.h; sourceTree = "<group>"; };
-		5EC399B522F97F60005DD359 /* NKPreciseTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKPreciseTimer.m; sourceTree = "<group>"; };
-		5EC399B622F97F60005DD359 /* NKPreciseTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKPreciseTimer.h; sourceTree = "<group>"; };
-		5EC399B722F97F60005DD359 /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
-		5EC399C122F97F66005DD359 /* UIView+Corner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Corner.h"; sourceTree = "<group>"; };
-		5EC399C222F97F66005DD359 /* UIView+Corner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Corner.m"; sourceTree = "<group>"; };
-		5EC399C322F97F66005DD359 /* UIImage+Corner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Corner.h"; sourceTree = "<group>"; };
-		5EC399C422F97F66005DD359 /* UIImage+Corner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Corner.m"; sourceTree = "<group>"; };
 		5ECBDEBB75F33FC9F770B51165F5CAA4 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
+		5EF4C7D0237F9FFC00C1D584 /* UIImage+Corner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Corner.h"; sourceTree = "<group>"; };
+		5EF4C7D1237F9FFC00C1D584 /* UIView+Corner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Corner.m"; sourceTree = "<group>"; };
+		5EF4C7D2237F9FFC00C1D584 /* UIImage+Corner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Corner.m"; sourceTree = "<group>"; };
+		5EF4C7D3237F9FFC00C1D584 /* UIView+Corner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Corner.h"; sourceTree = "<group>"; };
+		5EF4C7D5237F9FFC00C1D584 /* NKWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKWeakProxy.m; sourceTree = "<group>"; };
+		5EF4C7D6237F9FFC00C1D584 /* NKPreciseTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKPreciseTimer.m; sourceTree = "<group>"; };
+		5EF4C7D7237F9FFC00C1D584 /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
+		5EF4C7D8237F9FFC00C1D584 /* NKGCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKGCDTimer.h; sourceTree = "<group>"; };
+		5EF4C7D9237F9FFC00C1D584 /* NKDispatchAfter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKDispatchAfter.h; sourceTree = "<group>"; };
+		5EF4C7DA237F9FFC00C1D584 /* NKWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKWeakProxy.h; sourceTree = "<group>"; };
+		5EF4C7DB237F9FFC00C1D584 /* NKPreciseTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKPreciseTimer.h; sourceTree = "<group>"; };
+		5EF4C7DC237F9FFC00C1D584 /* NSTimer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
+		5EF4C7DD237F9FFC00C1D584 /* NKGCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKGCDTimer.m; sourceTree = "<group>"; };
 		5FC5638FC1D9EF6C5947AE90D9EDB24F /* KWPendingNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWPendingNode.m; path = Classes/Nodes/KWPendingNode.m; sourceTree = "<group>"; };
 		60D1CA952D879F71EB3F4923C78D14D9 /* KWMatchers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWMatchers.h; path = Classes/Core/KWMatchers.h; sourceTree = "<group>"; };
 		61E17A583EDCF7AEB15F5DA9F5745183 /* KWBeIdenticalToMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeIdenticalToMatcher.h; path = Classes/Matchers/KWBeIdenticalToMatcher.h; sourceTree = "<group>"; };
@@ -641,40 +641,40 @@
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
-		5EC399A722F97F00005DD359 /* Classes */ = {
+		5EF4C7CE237F9FFC00C1D584 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5EC399AE22F97F53005DD359 /* UI */,
-				5EC399AD22F97F4F005DD359 /* Timer */,
+				5EF4C7CF237F9FFC00C1D584 /* UI */,
+				5EF4C7D4237F9FFC00C1D584 /* Timer */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		5EC399AD22F97F4F005DD359 /* Timer */ = {
+		5EF4C7CF237F9FFC00C1D584 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5EC399B422F97F60005DD359 /* NKDispatchAfter.h */,
-				5EC399B322F97F5F005DD359 /* NKGCDTimer.h */,
-				5EC399B222F97F5F005DD359 /* NKGCDTimer.m */,
-				5EC399B622F97F60005DD359 /* NKPreciseTimer.h */,
-				5EC399B522F97F60005DD359 /* NKPreciseTimer.m */,
-				5EC399AF22F97F5F005DD359 /* NKWeakProxy.h */,
-				5EC399B022F97F5F005DD359 /* NKWeakProxy.m */,
-				5EC399B122F97F5F005DD359 /* NSTimer+Block.h */,
-				5EC399B722F97F60005DD359 /* NSTimer+Block.m */,
-			);
-			path = Timer;
-			sourceTree = "<group>";
-		};
-		5EC399AE22F97F53005DD359 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				5EC399C322F97F66005DD359 /* UIImage+Corner.h */,
-				5EC399C422F97F66005DD359 /* UIImage+Corner.m */,
-				5EC399C122F97F66005DD359 /* UIView+Corner.h */,
-				5EC399C222F97F66005DD359 /* UIView+Corner.m */,
+				5EF4C7D0237F9FFC00C1D584 /* UIImage+Corner.h */,
+				5EF4C7D1237F9FFC00C1D584 /* UIView+Corner.m */,
+				5EF4C7D2237F9FFC00C1D584 /* UIImage+Corner.m */,
+				5EF4C7D3237F9FFC00C1D584 /* UIView+Corner.h */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		5EF4C7D4237F9FFC00C1D584 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				5EF4C7D5237F9FFC00C1D584 /* NKWeakProxy.m */,
+				5EF4C7D6237F9FFC00C1D584 /* NKPreciseTimer.m */,
+				5EF4C7D7237F9FFC00C1D584 /* NSTimer+Block.m */,
+				5EF4C7D8237F9FFC00C1D584 /* NKGCDTimer.h */,
+				5EF4C7D9237F9FFC00C1D584 /* NKDispatchAfter.h */,
+				5EF4C7DA237F9FFC00C1D584 /* NKWeakProxy.h */,
+				5EF4C7DB237F9FFC00C1D584 /* NKPreciseTimer.h */,
+				5EF4C7DC237F9FFC00C1D584 /* NSTimer+Block.h */,
+				5EF4C7DD237F9FFC00C1D584 /* NKGCDTimer.m */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 		6ABCD8831134392BB909197E5336754A /* Pods-NemoKit_Example */ = {
@@ -726,7 +726,7 @@
 			isa = PBXGroup;
 			children = (
 				6C7C50C28356993E74AD3A238A8D5BF3 /* ReplaceMe.m */,
-				5EC399A722F97F00005DD359 /* Classes */,
+				5EF4C7CE237F9FFC00C1D584 /* Classes */,
 				DE822A0C1C01BD7CAD09C1261A146BEA /* Pod */,
 				89642C03D91171B5B41D8E797EE5764E /* Support Files */,
 			);
@@ -1027,19 +1027,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F720FAF13A108CE6901E0A8B0580E1E8 /* FBSnapshotTestCase-umbrella.h in Headers */,
-				5EC399BA22F97F60005DD359 /* NSTimer+Block.h in Headers */,
+				5EF4C7E9237F9FFC00C1D584 /* NSTimer+Block.h in Headers */,
+				5EF4C7DE237F9FFC00C1D584 /* UIImage+Corner.h in Headers */,
 				00224C929D57F45B70E87359E719948D /* FBSnapshotTestCase.h in Headers */,
+				5EF4C7E8237F9FFC00C1D584 /* NKPreciseTimer.h in Headers */,
 				C49D52712466511E332C952834C81FE1 /* FBSnapshotTestCasePlatform.h in Headers */,
-				5EC399BC22F97F60005DD359 /* NKGCDTimer.h in Headers */,
+				5EF4C7E5237F9FFC00C1D584 /* NKGCDTimer.h in Headers */,
+				5EF4C7E1237F9FFC00C1D584 /* UIView+Corner.h in Headers */,
+				5EF4C7E7237F9FFC00C1D584 /* NKWeakProxy.h in Headers */,
 				90142C6259374E18E640396A59AD379A /* FBSnapshotTestController.h in Headers */,
-				5EC399C522F97F67005DD359 /* UIView+Corner.h in Headers */,
 				40039E0AF0D764360B1D4FC4F7950D2E /* UIApplication+StrictKeyWindow.h in Headers */,
 				F1AAAE00BB32B733B238E2B4E8424506 /* UIImage+Compare.h in Headers */,
-				5EC399BF22F97F60005DD359 /* NKPreciseTimer.h in Headers */,
-				5EC399B822F97F60005DD359 /* NKWeakProxy.h in Headers */,
 				D04AAC8B22E4A4DC4F39891C4E52F251 /* UIImage+Diff.h in Headers */,
-				5EC399BD22F97F60005DD359 /* NKDispatchAfter.h in Headers */,
-				5EC399C722F97F67005DD359 /* UIImage+Corner.h in Headers */,
+				5EF4C7E6237F9FFC00C1D584 /* NKDispatchAfter.h in Headers */,
 				B74CD6E6EBEA0B642776BCB37850415D /* UIImage+Snapshot.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1447,20 +1447,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DBC8EB7532E931C2FBDA71D1E0B66A4 /* FBSnapshotTestCase-dummy.m in Sources */,
+				5EF4C7E0237F9FFC00C1D584 /* UIImage+Corner.m in Sources */,
+				5EF4C7E4237F9FFC00C1D584 /* NSTimer+Block.m in Sources */,
+				5EF4C7E3237F9FFC00C1D584 /* NKPreciseTimer.m in Sources */,
 				8CE3BF0ACE07EA42DD5DAC871BF4B767 /* FBSnapshotTestCase.m in Sources */,
+				5EF4C7E2237F9FFC00C1D584 /* NKWeakProxy.m in Sources */,
 				E8AC509D18EBF21B1FEA909652A01108 /* FBSnapshotTestCasePlatform.m in Sources */,
 				88396E68DC05A379282F3B374F75F43C /* FBSnapshotTestController.m in Sources */,
 				9D65089019D558E5A9661F2DCAD20313 /* SwiftSupport.swift in Sources */,
-				5EC399B922F97F60005DD359 /* NKWeakProxy.m in Sources */,
 				11C410135C7E89353B480AC8DE0BFB77 /* UIApplication+StrictKeyWindow.m in Sources */,
-				5EC399BB22F97F60005DD359 /* NKGCDTimer.m in Sources */,
-				5EC399C822F97F67005DD359 /* UIImage+Corner.m in Sources */,
-				5EC399C022F97F60005DD359 /* NSTimer+Block.m in Sources */,
-				5EC399C622F97F67005DD359 /* UIView+Corner.m in Sources */,
-				5EC399BE22F97F60005DD359 /* NKPreciseTimer.m in Sources */,
 				2DCFF0CE0BD295F1D46D3247F36B192C /* UIImage+Compare.m in Sources */,
 				14AD81D52FAD9CF2C065C61FB00C3B4F /* UIImage+Diff.m in Sources */,
+				5EF4C7EA237F9FFC00C1D584 /* NKGCDTimer.m in Sources */,
 				A525E29E0A8079B35B793D8A2B5FBDF2 /* UIImage+Snapshot.m in Sources */,
+				5EF4C7DF237F9FFC00C1D584 /* UIView+Corner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

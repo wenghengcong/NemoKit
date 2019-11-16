@@ -22,7 +22,7 @@ pod 'NemoKit'
 
 ## Author
 
-wenghengcong, wenghengcong@icloud.com
+wenghengcong, wenghengcong@icoud.com
 
 ## License
 

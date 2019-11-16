@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00A9A87BFADAC90327A1A2DB /* Pods_NemoKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6EAB9EA4BE74BC1A3E67B0 /* Pods_NemoKit_Example.framework */; };
+		0C4BEBD8E69754DB3A6C0050 /* Pods_NemoKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FC1CC86B06AF02FA77F1D22 /* Pods_NemoKit_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,9 +21,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		609534265299FA2B963662DF /* Pods_NemoKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1942196BA52521AEC4096594 /* Pods_NemoKit_Tests.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		A3E9D3A5CD8954480A06681E /* Pods_NemoKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7087F3BC6354C9E3B10C12D /* Pods_NemoKit_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1104974C89A070C079273A52 /* Pods-NemoKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-NemoKit_Tests/Pods-NemoKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		1942196BA52521AEC4096594 /* Pods_NemoKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NemoKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36D39952295BD0FD3EA8131B /* Pods-NemoKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-NemoKit_Tests/Pods-NemoKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* NemoKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemoKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,15 +57,16 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		641E3993B234F9CFB929373D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		6E9935E20515EDA88DC28765 /* Pods-NemoKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-NemoKit_Example/Pods-NemoKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		772AAE60CEF344E1F9A2E206 /* NemoKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = NemoKit.podspec; path = ../NemoKit.podspec; sourceTree = "<group>"; };
-		8235C4BB017C41F78B7A2132 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		7FC1CC86B06AF02FA77F1D22 /* Pods_NemoKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NemoKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		97C75BB1CD51F51D6439DBF2 /* Pods-NemoKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-NemoKit_Tests/Pods-NemoKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		AE4C49AEA30C6CDE7EFF9938 /* Pods-NemoKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Example.release.xcconfig"; path = "Target Support Files/Pods-NemoKit_Example/Pods-NemoKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		B9E6ED00AC5423434EF0376E /* Pods-NemoKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-NemoKit_Example/Pods-NemoKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FC6EAB9EA4BE74BC1A3E67B0 /* Pods_NemoKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NemoKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B277093EE8D8DB82F4B807D9 /* Pods-NemoKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Example.release.xcconfig"; path = "Target Support Files/Pods-NemoKit_Example/Pods-NemoKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B7087F3BC6354C9E3B10C12D /* Pods_NemoKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NemoKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D07FE33B356EBACCDCB5AED9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E54A3FF5E34AB3F39363B3D6 /* NemoKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NemoKit.podspec; path = ../NemoKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F5295557993DB30709DD7DA7 /* Pods-NemoKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NemoKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-NemoKit_Tests/Pods-NemoKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		F7C3CC470A0080F0075E6718 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				00A9A87BFADAC90327A1A2DB /* Pods_NemoKit_Example.framework in Frameworks */,
+				A3E9D3A5CD8954480A06681E /* Pods_NemoKit_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				609534265299FA2B963662DF /* Pods_NemoKit_Tests.framework in Frameworks */,
+				0C4BEBD8E69754DB3A6C0050 /* Pods_NemoKit_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +103,7 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				BB827D78786FAB7C43163698 /* Pods */,
+				ED62D32A96359407832CDC35 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,8 +123,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				FC6EAB9EA4BE74BC1A3E67B0 /* Pods_NemoKit_Example.framework */,
-				1942196BA52521AEC4096594 /* Pods_NemoKit_Tests.framework */,
+				B7087F3BC6354C9E3B10C12D /* Pods_NemoKit_Example.framework */,
+				7FC1CC86B06AF02FA77F1D22 /* Pods_NemoKit_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,22 +178,21 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				772AAE60CEF344E1F9A2E206 /* NemoKit.podspec */,
-				8235C4BB017C41F78B7A2132 /* README.md */,
-				641E3993B234F9CFB929373D /* LICENSE */,
+				E54A3FF5E34AB3F39363B3D6 /* NemoKit.podspec */,
+				F7C3CC470A0080F0075E6718 /* README.md */,
+				D07FE33B356EBACCDCB5AED9 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		BB827D78786FAB7C43163698 /* Pods */ = {
+		ED62D32A96359407832CDC35 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B9E6ED00AC5423434EF0376E /* Pods-NemoKit_Example.debug.xcconfig */,
-				AE4C49AEA30C6CDE7EFF9938 /* Pods-NemoKit_Example.release.xcconfig */,
-				1104974C89A070C079273A52 /* Pods-NemoKit_Tests.debug.xcconfig */,
-				97C75BB1CD51F51D6439DBF2 /* Pods-NemoKit_Tests.release.xcconfig */,
+				6E9935E20515EDA88DC28765 /* Pods-NemoKit_Example.debug.xcconfig */,
+				B277093EE8D8DB82F4B807D9 /* Pods-NemoKit_Example.release.xcconfig */,
+				36D39952295BD0FD3EA8131B /* Pods-NemoKit_Tests.debug.xcconfig */,
+				F5295557993DB30709DD7DA7 /* Pods-NemoKit_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -204,11 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "NemoKit_Example" */;
 			buildPhases = (
-				1B20039F34A068757F655129 /* [CP] Check Pods Manifest.lock */,
+				035082FCF569A5CBB9FF91F6 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				46EB444D5F4FC7DC19D49BB9 /* [CP] Embed Pods Frameworks */,
+				906E5621E343F8651FC28309 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,11 +222,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "NemoKit_Tests" */;
 			buildPhases = (
-				B791C307F5E1B93FAC57E16F /* [CP] Check Pods Manifest.lock */,
+				005377C13439075FB7B42020 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				B58EB9A1A030D027F92265E7 /* [CP] Embed Pods Frameworks */,
+				FD1B45973E58DB80BF53D978 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -259,6 +258,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -296,7 +296,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B20039F34A068757F655129 /* [CP] Check Pods Manifest.lock */ = {
+		005377C13439075FB7B42020 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NemoKit_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		035082FCF569A5CBB9FF91F6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -318,7 +340,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		46EB444D5F4FC7DC19D49BB9 /* [CP] Embed Pods Frameworks */ = {
+		906E5621E343F8651FC28309 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,7 +358,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NemoKit_Example/Pods-NemoKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B58EB9A1A030D027F92265E7 /* [CP] Embed Pods Frameworks */ = {
+		FD1B45973E58DB80BF53D978 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -354,28 +376,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NemoKit_Tests/Pods-NemoKit_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B791C307F5E1B93FAC57E16F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NemoKit_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -512,7 +512,7 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9E6ED00AC5423434EF0376E /* Pods-NemoKit_Example.debug.xcconfig */;
+			baseConfigurationReference = 6E9935E20515EDA88DC28765 /* Pods-NemoKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -528,7 +528,7 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE4C49AEA30C6CDE7EFF9938 /* Pods-NemoKit_Example.release.xcconfig */;
+			baseConfigurationReference = B277093EE8D8DB82F4B807D9 /* Pods-NemoKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -544,7 +544,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1104974C89A070C079273A52 /* Pods-NemoKit_Tests.debug.xcconfig */;
+			baseConfigurationReference = 36D39952295BD0FD3EA8131B /* Pods-NemoKit_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -569,7 +569,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97C75BB1CD51F51D6439DBF2 /* Pods-NemoKit_Tests.release.xcconfig */;
+			baseConfigurationReference = F5295557993DB30709DD7DA7 /* Pods-NemoKit_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
