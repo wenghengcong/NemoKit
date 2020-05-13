@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HOGCDTimer : NSObject
+@interface  NKGCDTimer : NSObject
 
 + (NSString *)execTask:(void(^)(void))task
                  start:(NSTimeInterval)start

@@ -7,6 +7,7 @@
 //
 
 #import "NSString+NMBF.h"
+#import "NMBFoundationMacro.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "NSArray+NMBF.h"
 #import "NSCharacterSet+NMBF.h"

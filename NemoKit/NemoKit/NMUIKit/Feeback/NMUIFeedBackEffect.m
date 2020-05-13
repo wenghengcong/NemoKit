@@ -7,7 +7,6 @@
 //
 
 #import "NMUIFeedBackEffect.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 @implementation NMUIFeedBackEffect
 

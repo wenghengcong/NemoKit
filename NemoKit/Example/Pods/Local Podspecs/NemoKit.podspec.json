@@ -34,7 +34,8 @@
     "AssetsLibrary",
     "Accelerate",
     "MobileCoreServices",
-    "SystemConfiguration"
+    "SystemConfiguration",
+    "AudioToolbox"
   ],
   "source_files": "NemoKit/**/*.{h,m}",
   "public_header_files": "NemoKit/**/*.{h}",

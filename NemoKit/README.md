@@ -1,4 +1,3 @@
-# NemoKit
 
 [![CI Status](https://img.shields.io/travis/wenghengcong/NemoKit.svg?style=flat)](https://travis-ci.org/wenghengcong/NemoKit)
 [![Version](https://img.shields.io/cocoapods/v/NemoKit.svg?style=flat)](https://cocoapods.org/pods/NemoKit)

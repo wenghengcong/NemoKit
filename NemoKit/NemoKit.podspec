@@ -31,7 +31,7 @@ TODO: Add long description of the pod here.
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
   s.libraries = 'z', 'sqlite3'
-  s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage', 'QuartzCore', 'ImageIO', 'AssetsLibrary', 'Accelerate', 'MobileCoreServices', 'SystemConfiguration'
+  s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage', 'QuartzCore', 'ImageIO', 'AssetsLibrary', 'Accelerate', 'MobileCoreServices', 'SystemConfiguration','AudioToolbox'
   s.source_files = 'NemoKit/**/*.{h,m}'
   s.public_header_files = 'NemoKit/**/*.{h}'
   s.resources="NemoKit/Assets/*.{xcassets,plist,png}"
