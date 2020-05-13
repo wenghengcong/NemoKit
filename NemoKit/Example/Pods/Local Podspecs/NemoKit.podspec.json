@@ -39,5 +39,8 @@
   ],
   "source_files": "NemoKit/**/*.{h,m}",
   "public_header_files": "NemoKit/**/*.{h}",
-  "resources": "NemoKit/Assets/*.{xcassets,plist,png}"
+  "resources": "NemoKit/Assets/*.{xcassets,plist,png}",
+  "ios": {
+    "vendored_frameworks": "NemoKit/Vendor/WebP.framework"
+  }
 }

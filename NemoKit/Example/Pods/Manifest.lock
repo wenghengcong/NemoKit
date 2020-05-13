@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  NemoKit: 4dacd081f6d32ef99cca8dd1e691f06a19be69aa
+  NemoKit: f7729c654385229733e0a71f4df7a5aa146ab9cd
 
 PODFILE CHECKSUM: 4ffcf7d9c8affcd9a087c0bae1d74fd203399aa0
 

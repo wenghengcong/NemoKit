@@ -35,7 +35,7 @@ TODO: Add long description of the pod here.
   s.source_files = 'NemoKit/**/*.{h,m}'
   s.public_header_files = 'NemoKit/**/*.{h}'
   s.resources="NemoKit/Assets/*.{xcassets,plist,png}"
-
+  s.ios.vendored_frameworks = 'NemoKit/Vendor/WebP.framework'
 #   s.resource_bundles = {
 #     'NemoKit' => ['NemoKit/Assets/*.png']
 #   }
