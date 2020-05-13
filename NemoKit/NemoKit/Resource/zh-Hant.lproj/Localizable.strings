@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  NemoMoney
+
+  Created by Hunt on 2020/1/18.
+  Copyright © 2020 Hunt <wenghengcong@icloud.com>. All rights reserved.
+*/
+"Cancel" = "取消";
+"Save" = "保存";

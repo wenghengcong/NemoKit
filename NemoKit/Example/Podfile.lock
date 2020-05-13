@@ -5,7 +5,7 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - Kiwi (3.0.0)
-  - NemoKit (0.1.0)
+  - NemoKit (0.0.1)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -13,7 +13,7 @@ DEPENDENCIES:
   - NemoKit (from `../`)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - FBSnapshotTestCase
     - Kiwi
 
@@ -24,8 +24,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  NemoKit: 3f317ad39073539592bdff82c16a4ed6e246e3d1
+  NemoKit: 038524e88f5479b04a46cea227ab54c1cbbc80b7
 
 PODFILE CHECKSUM: 4ffcf7d9c8affcd9a087c0bae1d74fd203399aa0
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.6.2

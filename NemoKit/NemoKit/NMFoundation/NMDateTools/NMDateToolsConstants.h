@@ -1,0 +1,22 @@
+//
+//  NMDateToolsConstants.h
+//  Nemo
+//
+//  Created by Hunt on 2019/8/25.
+//  Copyright © 2019 LuCi. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "NMDateToolsError.h"
+
+FOUNDATION_EXPORT const long long NM_SECONDS_IN_YEAR;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_MONTH_28;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_MONTH_29;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_MONTH_30;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_MONTH_31;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_WEEK;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_DAY;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_HOUR;
+FOUNDATION_EXPORT const NSInteger NM_SECONDS_IN_MINUTE;
+FOUNDATION_EXPORT const NSInteger NM_MILLISECONDS_IN_DAY;
+

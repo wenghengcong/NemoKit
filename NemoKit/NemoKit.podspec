@@ -28,15 +28,17 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/wenghengcong/NemoKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
+  s.requires_arc = true
   s.ios.deployment_target = '8.0'
+  s.libraries = 'z', 'sqlite3'
+  s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage', 'QuartzCore', 'ImageIO', 'AssetsLibrary', 'Accelerate', 'MobileCoreServices', 'SystemConfiguration'
+  s.source_files = 'NemoKit/**/*.{h,m}'
+  s.public_header_files = 'NemoKit/**/*.{h}'
+  s.resources="NemoKit/Assets/*.{xcassets,plist,png}"
 
-  s.source_files = 'NemoKit/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'NemoKit' => ['NemoKit/Assets/*.png']
-  # }
+#   s.resource_bundles = {
+#     'NemoKit' => ['NemoKit/Assets/*.png']
+#   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
