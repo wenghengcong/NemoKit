@@ -39,7 +39,13 @@
   ],
   "source_files": "NemoKit/**/*.{h,m}",
   "public_header_files": "NemoKit/**/*.{h}",
-  "resources": "NemoKit/Assets/*.{xcassets,plist,png}",
+  "resources": [
+    "NemoKit/Assets/*.{xcassets,plist,png}",
+    "NemoKit/*/*.{md}",
+    "NemoKit/*.{md}",
+    "#{root}/*.{md}",
+    "NemoKit/NMUIKit/MJRefresh/*.{bundle}"
+  ],
   "ios": {
     "vendored_frameworks": "NemoKit/Vendor/WebP.framework"
   }

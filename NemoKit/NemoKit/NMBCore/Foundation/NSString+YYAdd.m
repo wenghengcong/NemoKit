@@ -354,6 +354,7 @@ YYSYNTH_DUMMY_CLASS(NSString_YYAdd)
     return [self stringByReplacingCharactersInRange:extRange withString:scaleStr];
 }
 
+/// HCTODO: 正则表达式？
 - (CGFloat)pathScale {
     if (self.length == 0 || [self hasSuffix:@"/"]) return 1;
     NSString *name = self.stringByDeletingPathExtension;

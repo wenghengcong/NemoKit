@@ -23,9 +23,9 @@
 + (YYImage *)imageNamed:(NSString *)name {
     if (name.length == 0) return nil;
     if ([name hasSuffix:@"/"]) return nil;
-    
+    // 取出文件名
     NSString *res = name.stringByDeletingPathExtension;
-    NSString *ext = name.pathExtension;
+    NSString *ext = name.pathExtension; // 取出文件后缀
     NSString *path = nil;
     CGFloat scale = 1;
     

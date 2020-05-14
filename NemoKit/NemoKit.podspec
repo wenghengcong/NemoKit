@@ -34,8 +34,10 @@ TODO: Add long description of the pod here.
   s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage', 'QuartzCore', 'ImageIO', 'AssetsLibrary', 'Accelerate', 'MobileCoreServices', 'SystemConfiguration','AudioToolbox'
   s.source_files = 'NemoKit/**/*.{h,m}'
   s.public_header_files = 'NemoKit/**/*.{h}'
-  s.resources="NemoKit/Assets/*.{xcassets,plist,png}"
+  s.resources=['NemoKit/Assets/*.{xcassets,plist,png}','NemoKit/*/*.{md}','NemoKit/*.{md}','#{root}/*.{md}', 'NemoKit/NMUIKit/MJRefresh/*.{bundle}']
   s.ios.vendored_frameworks = 'NemoKit/Vendor/WebP.framework'
+
+# 将NemoKit/Assets/*.png图片生成NemoKit.bundle
 #   s.resource_bundles = {
 #     'NemoKit' => ['NemoKit/Assets/*.png']
 #   }

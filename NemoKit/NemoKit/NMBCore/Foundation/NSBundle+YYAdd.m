@@ -17,6 +17,7 @@ YYSYNTH_DUMMY_CLASS(NSBundle_YYAdd)
 
 @implementation NSBundle (YYAdd)
 
+/// 优先采用的分辨率
 + (NSArray *)preferredScales {
     static NSArray *scales;
     static dispatch_once_t onceToken;
