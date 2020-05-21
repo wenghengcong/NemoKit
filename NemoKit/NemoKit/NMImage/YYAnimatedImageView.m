@@ -17,6 +17,7 @@
 
 #define BUFFER_SIZE (10 * 1024 * 1024) // 10MB (minimum memory buffer size)
 
+/// learn: 利用宏来精简代码，优化语义显示
 #define LOCK(...) dispatch_semaphore_wait(self->_lock, DISPATCH_TIME_FOREVER); \
 __VA_ARGS__; \
 dispatch_semaphore_signal(self->_lock);
@@ -35,6 +36,13 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 };
 
 @interface YYAnimatedImageView() {
+    /*
+     private: 只有当前类能访问
+     pubLic: 在任何地方都可以访问
+     protect：只有当前类及其之类能够访问，是默认的访问类型
+     package：介于 private 和 public之间，在当前框架内可以使用。在不同的包中，使用package声明的变量就是private。
+     如果在同一个包中，package声明的变量，就是public
+     */
     @package
     UIImage <YYAnimatedImage> *_curAnimatedImage;
     
@@ -65,6 +73,11 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 @end
 
 /// An operation for image fetch
+/*
+ NSOperation 之类要实现 main 方法。
+ 更多参考：https://developer.apple.com/documentation/foundation/nsoperation
+ https://juejin.im/post/5bf89cc5518825719f209144#heading-10
+ */
 @interface _YYAnimatedImageViewFetchOperation : NSOperation
 @property (nonatomic, weak) YYAnimatedImageView *view;
 @property (nonatomic, assign) NSUInteger nextIndex;
@@ -107,6 +120,8 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 
 @implementation YYAnimatedImageView
 
+#pragma mark - Init
+/// learn: 初始化，设置了最基本的变量
 - (instancetype)init {
     self = [super init];
     _runloopMode = NSRunLoopCommonModes;
@@ -142,37 +157,40 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 }
 
 // init the animated params.
+/// 重置动画相关的参数，基本上所有变量都被重置了
 - (void)resetAnimated {
     if (!_link) {
         _lock = dispatch_semaphore_create(1);
         _buffer = [NSMutableDictionary new];
         _requestQueue = [[NSOperationQueue alloc] init];
-        _requestQueue.maxConcurrentOperationCount = 1;
+        _requestQueue.maxConcurrentOperationCount = 1;      // 1
         _link = [CADisplayLink displayLinkWithTarget:[YYWeakProxy proxyWithTarget:self] selector:@selector(step:)];
         if (_runloopMode) {
             [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:_runloopMode];
         }
         _link.paused = YES;
-        
+        // 监听系统事件的处理
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     
     [_requestQueue cancelAllOperations];
     LOCK(
+         // tips: 在后台线程延迟释放
          if (_buffer.count) {
-             NSMutableDictionary *holder = _buffer;
-             _buffer = [NSMutableDictionary new];
-             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                 // Capture the dictionary to global queue,
-                 // release these images in background to avoid blocking UI thread.
-                 [holder class];
-             });
-         }
-    );
+        NSMutableDictionary *holder = _buffer;
+        _buffer = [NSMutableDictionary new];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            // Capture the dictionary to global queue,
+            // release these images in background to avoid blocking UI thread.
+            [holder class];
+        });
+    }
+         );
     _link.paused = YES;
     _time = 0;
     if (_curIndex != 0) {
+        // 通过 kvo 来监听当前的 frame 状态
         [self willChangeValueForKey:@"currentAnimatedImageIndex"];
         _curIndex = 0;
         [self didChangeValueForKey:@"currentAnimatedImageIndex"];
@@ -187,6 +205,9 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     _incrBufferCount = 0;
 }
 
+#pragma mark - Set Image
+
+/// learn: 所有的 set方法都进入了 setImage:withType:
 - (void)setImage:(UIImage *)image {
     if (self.image == image) return;
     [self setImage:image withType:YYAnimatedImageTypeImage];
@@ -215,6 +236,8 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 
 - (id)imageForType:(YYAnimatedImageType)type {
     switch (type) {
+            /// 下面getter 使用的是 self，而 setImage: withType: 中 setter 使用的是super
+            /// 使用 super 而不是 self，是因为 setImage 被重写了
         case YYAnimatedImageTypeNone: return nil;
         case YYAnimatedImageTypeImage: return self.image;
         case YYAnimatedImageTypeHighlightedImage: return self.highlightedImage;
@@ -243,7 +266,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     _curFrame = nil;
     switch (type) {
         case YYAnimatedImageTypeNone: break;
-        case YYAnimatedImageTypeImage: super.image = image; break;
+        case YYAnimatedImageTypeImage: super.image = image; break;  // 这里是 super，而不是 self，防止无限循环
         case YYAnimatedImageTypeHighlightedImage: super.highlightedImage = image; break;
         case YYAnimatedImageTypeImages: super.animationImages = image; break;
         case YYAnimatedImageTypeHighlightedImages: super.highlightedAnimationImages = image; break;
@@ -251,32 +274,51 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     [self imageChanged];
 }
 
+/// 图像变动时，调用刷新
+/// 调用层级：setHightlighted/setImage:withType
 - (void)imageChanged {
     YYAnimatedImageType newType = [self currentImageType];
-    id newVisibleImage = [self imageForType:newType];
+    id newVisibleImage = [self imageForType:newType];   // 获取当前显示的 image
     NSUInteger newImageFrameCount = 0;
     BOOL hasContentsRect = NO;
+    
+    // 判断是不是 spritesheet
     if ([newVisibleImage isKindOfClass:[UIImage class]] &&
         [newVisibleImage conformsToProtocol:@protocol(YYAnimatedImage)]) {
         newImageFrameCount = ((UIImage<YYAnimatedImage> *) newVisibleImage).animatedImageFrameCount;
         if (newImageFrameCount > 1) {
+            // 是否只显示部分图像，YYImage 中只有 YYSpriteSheetImage 实现了该协议方法
             hasContentsRect = [((UIImage<YYAnimatedImage> *) newVisibleImage) respondsToSelector:@selector(animatedImageContentsRectAtIndex:)];
         }
     }
+    
+    /// 若上一次是 SpriteSheet 类型而当前显示的图片不是，归位 self.layer.contentsRect
     if (!hasContentsRect && _curImageHasContentsRect) {
         if (!CGRectEqualToRect(self.layer.contentsRect, CGRectMake(0, 0, 1, 1)) ) {
-            [CATransaction begin];
-            [CATransaction setDisableActions:YES];
+            /// 归位self.layer.contentsRect为CGRectMake(0, 0, 1, 1)
+            /// 使用了CATransaction事务来取消隐式动画。（由于此处完全不需要那 0.25 秒的隐式动画）
+            /*
+             CATransaction事务类可以对多个layer的属性同时进行修改，它分隐式事务和显式事务。
+             当我们向图层添加显式或隐式动画时，Core Animation都会自动创建隐式事务。
+             * 区分隐式动画和隐式事务：隐式动画通过隐式事务实现动画 。
+             * 区分显式动画和显式事务：显式动画有多种实现方式，显式事务是一种实现显式动画的方式。
+             * 除显式事务外,任何对于CALayer属性的修改,都是隐式事务.
+             */
+            [CATransaction begin];  // 显示事务
+            [CATransaction setDisableActions:YES];  // 设置动画过程是否显示
             self.layer.contentsRect = CGRectMake(0, 0, 1, 1);
             [CATransaction commit];
         }
     }
     _curImageHasContentsRect = hasContentsRect;
+    
+    // 如果是精灵图
     if (hasContentsRect) {
         CGRect rect = [((UIImage<YYAnimatedImage> *) newVisibleImage) animatedImageContentsRectAtIndex:0];
         [self setContentsRect:rect forImage:newVisibleImage];
     }
     
+    // 3、多帧的图片，初始化显示多帧动画需要的配置
     if (newImageFrameCount > 1) {
         [self resetAnimated];
         _curAnimatedImage = newVisibleImage;
@@ -293,13 +335,13 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 - (void)calcMaxBufferCount {
     int64_t bytes = (int64_t)_curAnimatedImage.animatedImageBytesPerFrame;
     if (bytes == 0) bytes = 1024;
-    
+    // learn: calculate memory size
     int64_t total = [UIDevice currentDevice].memoryTotal;
     int64_t free = [UIDevice currentDevice].memoryFree;
-    int64_t max = MIN(total * 0.2, free * 0.6);
-    max = MAX(max, BUFFER_SIZE);
+    int64_t max = MIN(total * 0.2, free * 0.6); // 0.2 的总内存、0.6 的空余内存的最小值，作为可使用内存的最大值
+    max = MAX(max, BUFFER_SIZE);        // BUFFER_SIZE 默认最小的为 10M
     if (_maxBufferSize) max = max > _maxBufferSize ? _maxBufferSize : max;
-    double maxBufferCount = (double)max / (double)bytes;
+    double maxBufferCount = (double)max / (double)bytes;    // 可缓存的帧数
     maxBufferCount = YY_CLAMP(maxBufferCount, 1, 512);
     _maxBufferCount = maxBufferCount;
 }
@@ -316,7 +358,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 }
 
 - (void)stopAnimating {
-    [super stopAnimating];
+    [super stopAnimating];  // UIImageView 就支持 stopAnimating
     [_requestQueue cancelAllOperations];
     _link.paused = YES;
     self.currentIsPlayingAnimation = NO;
@@ -326,11 +368,12 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     YYAnimatedImageType type = [self currentImageType];
     if (type == YYAnimatedImageTypeImages || type == YYAnimatedImageTypeHighlightedImages) {
         NSArray *images = [self imageForType:type];
-        if (images.count > 0) {
+        if (images.count > 0) { // 如果是动图数组，调用 UIImageView startAnimating
             [super startAnimating];
             self.currentIsPlayingAnimation = YES;
         }
     } else {
+        // 非动图
         if (_curAnimatedImage && _link.paused) {
             _curLoop = 0;
             _loopEnd = NO;
@@ -340,6 +383,9 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     }
 }
 
+#pragma mark - Cache Clear Time
+
+/// 收到内存警告，清理缓存
 - (void)didReceiveMemoryWarning:(NSNotification *)notification {
     [_requestQueue cancelAllOperations];
     [_requestQueue addOperationWithBlock: ^{
@@ -348,25 +394,26 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
         LOCK(
              NSArray * keys = _buffer.allKeys;
              for (NSNumber * key in keys) {
-                 if (![key isEqualToNumber:next]) { // keep the next frame for smoothly animation
-                     [_buffer removeObjectForKey:key];
-                 }
-             }
-        )//LOCK
+            if (![key isEqualToNumber:next]) { // keep the next frame for smoothly animation
+                [_buffer removeObjectForKey:key];
+            }
+        }
+             )//LOCK
     }];
 }
 
+/// 退到后台，清理缓存
 - (void)didEnterBackground:(NSNotification *)notification {
     [_requestQueue cancelAllOperations];
     NSNumber *next = @((_curIndex + 1) % _totalFrameCount);
     LOCK(
          NSArray * keys = _buffer.allKeys;
          for (NSNumber * key in keys) {
-             if (![key isEqualToNumber:next]) { // keep the next frame for smoothly animation
-                 [_buffer removeObjectForKey:key];
-             }
-         }
-     )//LOCK
+        if (![key isEqualToNumber:next]) { // keep the next frame for smoothly animation
+            [_buffer removeObjectForKey:key];
+        }
+    }
+         )//LOCK
 }
 
 - (void)step:(CADisplayLink *)link {
@@ -383,12 +430,12 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     }
     
     NSTimeInterval delay = 0;
-    if (!_bufferMiss) {
+    if (!_bufferMiss) { // 上一次未丢帧
         _time += link.duration;
         delay = [image animatedImageDurationAtIndex:_curIndex];
-        if (_time < delay) return;
+        if (_time < delay) return;  // 刷新时间还没到
         _time -= delay;
-        if (nextIndex == 0) {
+        if (nextIndex == 0) {   // 下一帧是首帧，检查是否超过 loop 数目
             _curLoop++;
             if (_curLoop >= _totalLoop && _totalLoop != 0) {
                 _loopEnd = YES;
@@ -401,28 +448,33 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
         if (_time > delay) _time = delay; // do not jump over frame
     }
     LOCK(
+         // 获取当前 nextIndex 图片
          bufferedImage = buffer[@(nextIndex)];
+         // 命中
          if (bufferedImage) {
-             if ((int)_incrBufferCount < _totalFrameCount) {
-                 [buffer removeObjectForKey:@(nextIndex)];
-             }
-             [self willChangeValueForKey:@"currentAnimatedImageIndex"];
-             _curIndex = nextIndex;
-             [self didChangeValueForKey:@"currentAnimatedImageIndex"];
-             _curFrame = bufferedImage == (id)[NSNull null] ? nil : bufferedImage;
-             if (_curImageHasContentsRect) {
-                 _curContentsRect = [image animatedImageContentsRectAtIndex:_curIndex];
-                 [self setContentsRect:_curContentsRect forImage:_curFrame];
-             }
-             nextIndex = (_curIndex + 1) % _totalFrameCount;
-             _bufferMiss = NO;
-             if (buffer.count == _totalFrameCount) {
-                 bufferIsFull = YES;
-             }
-         } else {
-             _bufferMiss = YES;
-         }
-    )//LOCK
+        if ((int)_incrBufferCount < _totalFrameCount) {
+            [buffer removeObjectForKey:@(nextIndex)];
+        }
+        [self willChangeValueForKey:@"currentAnimatedImageIndex"];
+        _curIndex = nextIndex;
+        [self didChangeValueForKey:@"currentAnimatedImageIndex"];
+        _curFrame = bufferedImage == (id)[NSNull null] ? nil : bufferedImage;
+        if (_curImageHasContentsRect) {
+            _curContentsRect = [image animatedImageContentsRectAtIndex:_curIndex];
+            [self setContentsRect:_curContentsRect forImage:_curFrame];
+        }
+        // 计算下一个图片
+        nextIndex = (_curIndex + 1) % _totalFrameCount;
+        _bufferMiss = NO;
+        
+        if (buffer.count == _totalFrameCount) {
+            // 已获取所有图像
+            bufferIsFull = YES;
+        }
+    } else {
+        _bufferMiss = YES;
+    }
+         )//LOCK
     
     if (!_bufferMiss) {
         [self.layer setNeedsDisplay]; // let system call `displayLayer:` before runloop sleep
@@ -437,6 +489,8 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     }
 }
 
+
+/// 重绘：setNeedsDisplay 会回调该方法，displayLayer是 CALayerDelegate 的方法之一
 - (void)displayLayer:(CALayer *)layer {
     if (_curFrame) {
         layer.contents = (__bridge id)_curFrame.CGImage;
@@ -464,6 +518,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     [CATransaction commit];
 }
 
+#pragma mark - Strat/Stop time
 - (void)didMoved {
     if (self.autoPlayAnimatedImage) {
         if(self.superview && self.window) {
@@ -473,12 +528,13 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
         }
     }
 }
-
+/// 在视图层级变更时调用是否启动动画 didMoved
+/// 在 imageview 添加到父视图或者从父视图移除时，window 更改会回调该方法
 - (void)didMoveToWindow {
     [super didMoveToWindow];
     [self didMoved];
 }
-
+/// 在 imageview 添加到父视图或者从父视图移除时，会回调该方法
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
     [self didMoved];
@@ -498,13 +554,13 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
              [self didChangeValueForKey:@"currentAnimatedImageIndex"];
              _curFrame = [_curAnimatedImage animatedImageFrameAtIndex:_curIndex];
              if (_curImageHasContentsRect) {
-                 _curContentsRect = [_curAnimatedImage animatedImageContentsRectAtIndex:_curIndex];
-             }
+            _curContentsRect = [_curAnimatedImage animatedImageContentsRectAtIndex:_curIndex];
+        }
              _time = 0;
              _loopEnd = NO;
              _bufferMiss = NO;
              [self.layer setNeedsDisplay];
-         )//LOCK
+             )//LOCK
     });
 }
 

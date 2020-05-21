@@ -23,9 +23,9 @@
 + (YYImage *)imageNamed:(NSString *)name {
     if (name.length == 0) return nil;
     if ([name hasSuffix:@"/"]) return nil;
-    // 取出文件名
+    // 根据 name 匹配对应的分辨率
     NSString *res = name.stringByDeletingPathExtension;
-    NSString *ext = name.pathExtension; // 取出文件后缀
+    NSString *ext = name.pathExtension;
     NSString *path = nil;
     CGFloat scale = 1;
     
@@ -42,7 +42,7 @@
         if (path) break;
     }
     if (path.length == 0) return nil;
-    
+    // 使用dataWithContentsOfFile
     NSData *data = [NSData dataWithContentsOfFile:path];
     if (data.length == 0) return nil;
     

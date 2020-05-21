@@ -74,6 +74,8 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
     YYImageBlendOver,
 };
 
+
+/// YYImageFrame 负责管理帧图像信息
 /**
  An image frame object.
  */

@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
  A dispatch queue pool holds multiple serial queues.
  Use this class to control queue's thread count (instead of concurrent queue).
  */
+/*
+ 线程池对象YYDispatchQueuePool
+ -> YYDispatchContext 不同质量的线程上下文
+ -> dispatch_queue_t 多个不同的同步线程
+ */
 @interface YYDispatchQueuePool : NSObject
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;

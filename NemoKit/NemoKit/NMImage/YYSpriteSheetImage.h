@@ -18,7 +18,7 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// 同 YYFrameImage，以精灵图方式显示动画，可以将一张图片自定义剪裁成多张图片来播放图片动画，同样可以配合YYAnimatedImageView 使用
 /**
  An image to display sprite sheet animation.
  

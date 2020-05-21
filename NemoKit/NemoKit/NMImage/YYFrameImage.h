@@ -18,7 +18,7 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// 同 YYImage，能够显示帧动画，仅支持png，jpeg 格式，可以配合 YYAnimatedImageView 来播放动画
 /**
  An image to display frame-based animation.
  

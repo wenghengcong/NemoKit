@@ -13,7 +13,10 @@
 #import <UIKit/UIKit.h>
 #import <libkern/OSAtomic.h>
 
+// learn: 以 C 为基础的系列语言，宏还是非常好用且实用的一个工具
 #define MAX_QUEUE_COUNT 32
+
+// learn: 以 C 为基础的系列语言，内联函数的对重构非常有效
 
 static inline dispatch_queue_priority_t NSQualityOfServiceToDispatchPriority(NSQualityOfService qos) {
     switch (qos) {
@@ -81,6 +84,8 @@ static void YYDispatchContextRelease(YYDispatchContext *context) {
     if (context->queues) {
         for (NSUInteger i = 0; i < context->queueCount; i++) {
             void *queuePointer = context->queues[i];
+            // learn: __bridge_transfer 会转移所有权
+            // 此处从 CF 转移给了 ARC，所以会自动销毁
             dispatch_queue_t queue = (__bridge_transfer dispatch_queue_t)(queuePointer);
             const char *name = dispatch_queue_get_label(queue);
             if (name) strlen(name); // avoid compiler warning
@@ -90,9 +95,11 @@ static void YYDispatchContextRelease(YYDispatchContext *context) {
         context->queues = NULL;
     }
     if (context->name) free((void *)context->name);
+    free(context);
 }
 
 static dispatch_queue_t YYDispatchContextGetQueue(YYDispatchContext *context) {
+    // learn: OSAtomicIncrement32 增加一个全局计数，具有原子性
     uint32_t counter = (uint32_t)OSAtomicIncrement32(&context->counter);
     void *queue = context->queues[counter % context->queueCount];
     return (__bridge dispatch_queue_t)(queue);
@@ -105,6 +112,7 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
         case NSQualityOfServiceUserInteractive: {
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
+                // activeProcessorCount 进程中激活的核心数量
                 int count = (int)[NSProcessInfo processInfo].activeProcessorCount;
                 count = count < 1 ? 1 : count > MAX_QUEUE_COUNT ? MAX_QUEUE_COUNT : count;
                 context[0] = YYDispatchContextCreate("com.ibireme.yykit.user-interactive", count, qos);

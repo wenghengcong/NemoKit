@@ -13,6 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIImageView 子类，用于播放图像动画，定义了 YYAnimatedImage 协议
 /**
  An image view for displaying animated image.
  

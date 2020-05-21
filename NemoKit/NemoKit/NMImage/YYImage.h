@@ -20,7 +20,7 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// UIImage的子类，遵守 YYAnimatedImage 协议，更高级的方式来显示 Image
 /**
  A YYImage object is a high-level way to display animated image data.
  
