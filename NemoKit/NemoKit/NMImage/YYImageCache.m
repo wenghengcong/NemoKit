@@ -16,6 +16,7 @@
 #import "NSObject+YYAdd.h"
 #import "YYImage.h"
 
+// learn: 是否包含某个头文件，或者模块
 #if __has_include("YYDispatchQueuePool.h")
 #import "YYDispatchQueuePool.h"
 #endif
@@ -90,6 +91,7 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
 }
 
 - (instancetype)init {
+    // learn: 阻止用户调用某些 init，可以抛出异常，并提示
     @throw [NSException exceptionWithName:@"YYImageCache init error" reason:@"YYImageCache must be initialized with a path. Use 'initWithPath:' instead." userInfo:nil];
     return [self initWithPath:@""];
 }
@@ -120,8 +122,10 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
 }
 
 - (void)setImage:(UIImage *)image imageData:(NSData *)imageData forKey:(NSString *)key withType:(YYImageCacheType)type {
+    // learn: 学会在一开始就进行判空或者校验，不符合return
     if (!key || (image == nil && imageData.length == 0)) return;
-    
+    // 不同的 type，先校验的值不一样
+    // 如果是内存缓存，先校验 image，而若是磁盘缓存，先校验 imageData，考虑是？
     __weak typeof(self) _self = self;
     if (type & YYImageCacheTypeMemory) { // add to memory cache
         if (image) {

@@ -85,6 +85,7 @@ typedef NS_OPTIONS(NSUInteger, YYImageCacheType) {
 ///=============================================================================
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
+// learn: UNAVAILABLE_ATTRIBUTE ！！！表示该初始化不能调用
 
 /**
  Returns global shared image cache instance.
@@ -101,7 +102,7 @@ typedef NS_OPTIONS(NSUInteger, YYImageCacheType) {
  @result A new cache object, or nil if an error occurs.
  */
 - (nullable instancetype)initWithPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
-
+// learn: NS_DESIGNATED_INITIALIZER 表示该初始化为指定构造器
 
 #pragma mark - Access Methods
 ///=============================================================================

@@ -44,7 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** The total cost of objects in the cache (read-only). */
 @property (readonly) NSUInteger totalCost;
 
-
+// learn: @property 默认属性为：assign\atomic\readwrite
+// 对应的对象默认属性为：strong\atomic\readwrite
 #pragma mark - Limit
 ///=============================================================================
 /// @name Limit

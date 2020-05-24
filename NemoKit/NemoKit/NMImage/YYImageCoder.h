@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, YYImageType) {
 
 
 /**
+ 下一帧刷新前的策略
  Dispose method specifies how the area used by the current frame is to be treated
  before rendering the next frame on the canvas.
  */
@@ -370,10 +371,10 @@ CG_EXTERN NSString *_Nullable YYImageTypeGetExtension(YYImageType type);
 
 
 /// Returns the shared DeviceRGB color space.
-CG_EXTERN CGColorSpaceRef YYCGColorSpaceGetDeviceRGB();
+CG_EXTERN CGColorSpaceRef YYCGColorSpaceGetDeviceRGB(void);
 
 /// Returns the shared DeviceGray color space.
-CG_EXTERN CGColorSpaceRef YYCGColorSpaceGetDeviceGray();
+CG_EXTERN CGColorSpaceRef YYCGColorSpaceGetDeviceGray(void);
 
 /// Returns whether a color space is DeviceRGB.
 CG_EXTERN BOOL YYCGColorSpaceIsDeviceRGB(CGColorSpaceRef space);
@@ -448,7 +449,7 @@ CG_EXTERN CFDataRef _Nullable YYCGImageCreateEncodedData(CGImageRef imageRef, YY
 /**
  Whether WebP is available in YYImage.
  */
-CG_EXTERN BOOL YYImageWebPAvailable();
+CG_EXTERN BOOL YYImageWebPAvailable(void);
 
 /**
  Get a webp image frame count;

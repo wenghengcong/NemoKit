@@ -43,9 +43,6 @@ __has_include("webp/demux.h")  && __has_include("webp/mux.h")
 #endif
 
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Utility (for little endian platform)
 

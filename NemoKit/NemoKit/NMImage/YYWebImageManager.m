@@ -60,6 +60,9 @@
     request.HTTPShouldHandleCookies = (options & YYWebImageOptionHandleCookies) != 0;
     request.allHTTPHeaderFields = [self headersForURL:url];
     request.HTTPShouldUsePipelining = YES;
+    // 如果YYWebImageOptionUseNSURLCache，则使用NSURLRequestUseProtocolCachePolicy，表示使用 HTTP/HTTPS等协议默认的缓存策略
+    //详见https://developer.apple.com/documentation/foundation/nsurlrequestcachepolicy/nsurlrequestuseprotocolcachepolicy?language=objc
+    // 如果使用 YYImageCache，则使得 request的缓存策略：NSURLRequestReloadIgnoringLocalCacheData
     request.cachePolicy = (options & YYWebImageOptionUseNSURLCache) ?
         NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData;
     
