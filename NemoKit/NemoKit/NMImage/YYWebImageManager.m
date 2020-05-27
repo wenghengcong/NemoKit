@@ -75,13 +75,16 @@
                                                                        completion:completion];
 
     if (_username && _password) {
+        // learn next: 网络验证
         operation.credential = [NSURLCredential credentialWithUser:_username password:_password persistence:NSURLCredentialPersistenceForSession];
     }
     if (operation) {
+        // learn next: NSOperationQueue\NSOperation
         NSOperationQueue *queue = _queue;
         if (queue) {
             [queue addOperation:operation];
         } else {
+            // 如果当前 queue 为空，直接在当前线程执行
             [operation start];
         }
     }

@@ -85,6 +85,8 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 @end
 
 @implementation _YYAnimatedImageViewFetchOperation
+
+/// learn: 自定义 NSOperation, 实现 main 方法，表示该 task 是非并发。不要调用 super。该方法会自动在一个自动释放池中执行，所以你不需要将创建一个新的自动释放池来执行你自定义的实现。
 - (void)main {
     __strong YYAnimatedImageView *view = _view;
     if (!view) return;
@@ -163,7 +165,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
         _lock = dispatch_semaphore_create(1);
         _buffer = [NSMutableDictionary new];
         _requestQueue = [[NSOperationQueue alloc] init];
-        _requestQueue.maxConcurrentOperationCount = 1;      // 1
+        _requestQueue.maxConcurrentOperationCount = 1;      // 1，表示串行队列，对应_YYAnimatedImageViewFetchOperation是非并发的实现
         _link = [CADisplayLink displayLinkWithTarget:[YYWeakProxy proxyWithTarget:self] selector:@selector(step:)];
         if (_runloopMode) {
             [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:_runloopMode];

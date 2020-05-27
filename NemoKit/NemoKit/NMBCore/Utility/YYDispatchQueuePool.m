@@ -98,6 +98,8 @@ static void YYDispatchContextRelease(YYDispatchContext *context) {
     free(context);
 }
 
+
+/// 根据context获取真正使用到的队列
 static dispatch_queue_t YYDispatchContextGetQueue(YYDispatchContext *context) {
     // learn: OSAtomicIncrement32 增加一个全局计数，具有原子性
     uint32_t counter = (uint32_t)OSAtomicIncrement32(&context->counter);
@@ -106,6 +108,7 @@ static dispatch_queue_t YYDispatchContextGetQueue(YYDispatchContext *context) {
 }
 
 
+/// 获取YYDispatchContext，里面存储在多个串行队列
 static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
     static YYDispatchContext *context[5] = {0};
     switch (qos) {

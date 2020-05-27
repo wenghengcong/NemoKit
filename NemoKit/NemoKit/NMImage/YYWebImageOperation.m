@@ -53,8 +53,8 @@ static NSData *JPEGSOSMarker() {
     return marker;
 }
 
-
-static NSMutableSet *URLBlacklist;
+// url 黑名单
+static NSMutableSet *URLBlacklist;      //  learn: 相比于 array和 dictionary 效率更高效
 static dispatch_semaphore_t URLBlacklistLock;
 
 static void URLBlacklistInit() {
@@ -83,6 +83,7 @@ static void URLInBlackListAdd(NSURL *url) {
 }
 
 
+/// learn: 认证研读并学习自定义并发 NSOperation 的实现
 @interface YYWebImageOperation() <NSURLConnectionDelegate>
 @property (readwrite, getter=isExecuting) BOOL executing;
 @property (readwrite, getter=isFinished) BOOL finished;
@@ -115,6 +116,8 @@ static void URLInBlackListAdd(NSURL *url) {
 /// Network thread entry point.
 + (void)_networkThreadMain:(id)object {
     @autoreleasepool {
+        // 线程保活
+        // 一个 runLoop 中如果source/timer/observer 都为空则会直接退出，并不进入循环。这里 runLoop 添加了一个 NSMachPort ，这个port开启相当于添加了一个Source1事件源，但是这个事件源并没有真正的监听什么东西，只是为了不让 runLoop 退出。
         [[NSThread currentThread] setName:@"com.ibireme.yykit.webimage.request"];
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
         [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
@@ -127,10 +130,12 @@ static void URLInBlackListAdd(NSURL *url) {
     static NSThread *thread = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        // 创建一个线程来执行 image download 的操作
         thread = [[NSThread alloc] initWithTarget:self selector:@selector(_networkThreadMain:) object:nil];
         if ([thread respondsToSelector:@selector(setQualityOfService:)]) {
             thread.qualityOfService = NSQualityOfServiceBackground;
         }
+        // 启动线程
         [thread start];
     });
     return thread;
@@ -141,6 +146,7 @@ static void URLInBlackListAdd(NSURL *url) {
 #ifdef YYDispatchQueuePool_h
     return YYDispatchQueueGetForQOS(NSQualityOfServiceUtility);
 #else
+    // learn: 在区间内定义 #define / #undef
     #define MAX_QUEUE_COUNT 16
     static int queueCount;
     static dispatch_queue_t queues[MAX_QUEUE_COUNT];
@@ -211,6 +217,7 @@ static void URLInBlackListAdd(NSURL *url) {
         if (_connection) {
             [_connection cancel];
             if (![_request.URL isFileURL] && (_options & YYWebImageOptionShowNetworkActivity)) {
+                // decrementNetworkActivityCount 维护了一个全局的活动网络请求数
                 [[UIApplication sharedExtensionApplication] decrementNetworkActivityCount];
             }
         }
@@ -226,6 +233,7 @@ static void URLInBlackListAdd(NSURL *url) {
 - (void)_endBackgroundTask {
     [_lock lock];
     if (_taskID != UIBackgroundTaskInvalid) {
+        // 假如启用了background task，必须调用该方法，否则系统会杀掉 APP
         [[UIApplication sharedExtensionApplication] endBackgroundTask:_taskID];
         _taskID = UIBackgroundTaskInvalid;
     }
@@ -248,6 +256,9 @@ static void URLInBlackListAdd(NSURL *url) {
         if (_cache &&
             !(_options & YYWebImageOptionUseNSURLCache) &&
             !(_options & YYWebImageOptionRefreshImageCache)) {
+            // 不采用NSURLCache，不刷新本地 cache image
+            
+            // 1. 先从内存缓存取 image
             UIImage *image = [_cache getImageForKey:_cacheKey withType:YYImageCacheTypeMemory];
             if (image) {
                 [_lock lock];
@@ -258,6 +269,8 @@ static void URLInBlackListAdd(NSURL *url) {
                 [_lock unlock];
                 return;
             }
+            
+            // 2. 从磁盘缓存取 image
             if (!(_options & YYWebImageOptionIgnoreDiskCache)) {
                 __weak typeof(self) _self = self;
                 dispatch_async([self.class _imageQueue], ^{
@@ -265,9 +278,11 @@ static void URLInBlackListAdd(NSURL *url) {
                     if (!self || [self isCancelled]) return;
                     UIImage *image = [self.cache getImageForKey:self.cacheKey withType:YYImageCacheTypeDisk];
                     if (image) {
+                        // learn: 注意一个缓存的策略，就是从 disk 读取到的 image，一定要 set memory
                         [self.cache setImage:image imageData:nil forKey:self.cacheKey withType:YYImageCacheTypeMemory];
                         [self performSelector:@selector(_didReceiveImageFromDiskCache:) onThread:[self.class _networkThread] withObject:image waitUntilDone:NO];
                     } else {
+                        // 3. 未取到 image，开始从 network 获取
                         [self performSelector:@selector(_startRequest:) onThread:[self.class _networkThread] withObject:nil waitUntilDone:NO];
                     }
                 });
@@ -275,6 +290,8 @@ static void URLInBlackListAdd(NSURL *url) {
             }
         }
     }
+    
+    // 3. 既不从 memory，也不从 disk 获取，直接从 network 获取
     [self performSelector:@selector(_startRequest:) onThread:[self.class _networkThread] withObject:nil waitUntilDone:NO];
 }
 
@@ -283,6 +300,7 @@ static void URLInBlackListAdd(NSURL *url) {
     if ([self isCancelled]) return;
     @autoreleasepool {
         if ((_options & YYWebImageOptionIgnoreFailedURL) && URLBlackListContains(_request.URL)) {
+            //  1. 是否需要忽略已经失败的 url
             NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:@{ NSLocalizedDescriptionKey : @"Failed to load URL, blacklisted." }];
             [_lock lock];
             if (![self isCancelled]) {
@@ -293,16 +311,24 @@ static void URLInBlackListAdd(NSURL *url) {
             return;
         }
         
+        /*
+         learn: An NSURL is a file URL only if it begins with file://
+         If you want to create an NSURL from a file path, you must use NSURL fileURLWithPath:.
+         The use of URLWithString assumes the string is a non-file URL
+         */
         if (_request.URL.isFileURL) {
+            // learn: 从file path 读取 file 的相关属性，这是从本地读取的图片
             NSArray *keys = @[NSURLFileSizeKey];
             NSDictionary *attr = [_request.URL resourceValuesForKeys:keys error:nil];
             NSNumber *fileSize = attr[NSURLFileSizeKey];
+            // learn: -1 一般代表异常
             _expectedSize = (fileSize != nil) ? fileSize.unsignedIntegerValue : -1;
         }
         
         // request image from web
         [_lock lock];
         if (![self isCancelled]) {
+            // 2. 开始进行网络请求
             _connection = [[NSURLConnection alloc] initWithRequest:_request delegate:[YYWeakProxy proxyWithTarget:self]];
             if (![_request.URL isFileURL] && (_options & YYWebImageOptionShowNetworkActivity)) {
                 [[UIApplication sharedExtensionApplication] incrementNetworkActivityCount];
@@ -323,7 +349,7 @@ static void URLInBlackListAdd(NSURL *url) {
         [_connection cancel];
         _connection = nil;
         if (_completion) _completion(nil, _request.URL, YYWebImageFromNone, YYWebImageStageCancelled, nil);
-        [self _endBackgroundTask];
+        [self _endBackgroundTask];  // 结束后台任务
     }
 }
 
@@ -379,12 +405,26 @@ static void URLInBlackListAdd(NSURL *url) {
 
 #pragma mark - NSURLConnectionDelegate runs in operation thread
 
+/// 是否存储 credential storage
 - (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)connection {
     return _shouldUseCredentialStorage;
 }
 
+/*
+learn: 1. 只要请求的地址是HTTPS的, 就会调用这个代理方法
+我们需要在该方法中告诉系统, 是否信任服务器返回的证书
+challenge: NSURLAuthenticationChallenge, 挑战 质问 (包含了受保护的区域)，包含了以下：
+ - protectionSpace : 受保护区域
+ - NSURLAuthenticationMethodServerTrust : 证书的类型是 服务器信任
+ - error ：最后一次授权失败的错误信息
+ - failureResponse ：最后一次授权失败的错误信息
+ - previousFailureCount ：授权失败的次数
+ - proposedCredential ：建议使用的证书
+ - protectionSpace ：NSURLProtectionSpace对象，代表了服务器上的一块需要授权信息的区域。包括了服务器地址、端口等信息。在此指的是challenge.protectionSpace。其中Auth-scheme指protectionSpace所支持的验证方法，NSURLAuthenticationMethodServerTrust指对protectionSpace执行证书验证。
+*/
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     @autoreleasepool {
+        // 1.判断服务器返回的证书类型, 是否是服务器信任
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
             if (!(_options & YYWebImageOptionAllowInvalidSSLCertificates) &&
                 [challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)]) {
@@ -394,10 +434,13 @@ static void URLInBlackListAdd(NSURL *url) {
                 [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
             }
         } else {
+            // 2. 非服务器信任，使用凭据，此处由 YYWebImageManager 传入有 username、password 的凭据
             if ([challenge previousFailureCount] == 0) {
                 if (_credential) {
+                    // 使用凭据连接
                     [[challenge sender] useCredential:_credential forAuthenticationChallenge:challenge];
                 } else {
+                    // 不使用凭据，继续连接
                     [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
                 }
             } else {
@@ -406,6 +449,7 @@ static void URLInBlackListAdd(NSURL *url) {
         }
     }
 }
+
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
     if (!cachedResponse) return cachedResponse;
@@ -417,6 +461,13 @@ static void URLInBlackListAdd(NSURL *url) {
     }
 }
 
+/*
+ * 2. 当接受到服务器响应的时候会调用:response(响应头)，代理会收到connection:didReceiveResponse:消息。
+ * 这个代理方法会检查NSURLResponse对象并确认数据的content-type，MIME类型，文件 名和其它元数据。
+ * 需要注意的是，对于单个连接，我们可能会接多次收到connection:didReceiveResponse:消息；这咱情况发生在
+ * 响应是多重MIME编码的情况下。每次代理接收到connection:didReceiveResponse:时，应该重设进度标识
+ * 并丢弃之前接收到的数据。
+ */
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     @autoreleasepool {
         NSError *error = nil;
@@ -424,6 +475,7 @@ static void URLInBlackListAdd(NSURL *url) {
             NSHTTPURLResponse *httpResponse = (id) response;
             NSInteger statusCode = httpResponse.statusCode;
             if (statusCode >= 400 || statusCode == 304) {
+                // 304 内容未做更改，4** 客户端错误，请求包含语法错误或无法完成请求
                 error = [NSError errorWithDomain:NSURLErrorDomain code:statusCode userInfo:nil];
             }
         }
@@ -431,6 +483,7 @@ static void URLInBlackListAdd(NSURL *url) {
             [_connection cancel];
             [self connection:_connection didFailWithError:error];
         } else {
+            // 处理_expectedSize
             if (response.expectedContentLength) {
                 _expectedSize = (NSInteger)response.expectedContentLength;
                 if (_expectedSize < 0) _expectedSize = -1;
@@ -445,6 +498,11 @@ static void URLInBlackListAdd(NSURL *url) {
     }
 }
 
+/* learn: 3. 当接受到服务器返回数据的时候调用(会调用多次)，该消息用于接收服务端返回的数据实体。
+    该方法负责存储数据。我们也可以用这个方法提供进度信息.
+ * 这种情况下，我们需要在connection:didReceiveResponse:方法中
+ * 调用响应对象的expectedContentLength方法来获取数据的总长度。
+ */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     @autoreleasepool {
         [_lock lock];
@@ -453,6 +511,7 @@ static void URLInBlackListAdd(NSURL *url) {
         if (canceled) return;
         
         if (data) [_data appendData:data];
+        // progress block
         if (_progress) {
             [_lock lock];
             if (![self isCancelled]) {
@@ -466,7 +525,7 @@ static void URLInBlackListAdd(NSURL *url) {
         BOOL progressiveBlur = (_options & YYWebImageOptionProgressiveBlur) > 0;
         if (!_completion || !(progressive || progressiveBlur)) return;
         if (data.length <= 16) return;
-        if (_expectedSize > 0 && data.length >= _expectedSize * 0.99) return;
+        if (_expectedSize > 0 && data.length >= _expectedSize * 0.99) return;   // > 0.99 表示已下载完成
         if (_progressiveIgnored) return;
         
         NSTimeInterval min = progressiveBlur ? MIN_PROGRESSIVE_BLUR_TIME_INTERVAL : MIN_PROGRESSIVE_TIME_INTERVAL;
@@ -571,6 +630,7 @@ static void URLInBlackListAdd(NSURL *url) {
     }
 }
 
+// learn: 4.2 当请求完成的回调
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     @autoreleasepool {
         [_lock lock];
@@ -639,6 +699,7 @@ static void URLInBlackListAdd(NSURL *url) {
     }
 }
 
+// learn: 4.1 当请求失败的回调
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     @autoreleasepool {
         [_lock lock];
@@ -669,30 +730,35 @@ static void URLInBlackListAdd(NSURL *url) {
 
 #pragma mark - Override NSOperation
 
+/// learn: 并发task，需要实现 start。并且还需要实现asynchronous、executing、finished
+/// 不要在此方法调用 super，可以同自定义实现同步任务的对比：_YYAnimatedImageViewFetchOperation
 - (void)start {
     @autoreleasepool {
         [_lock lock];
         self.started = YES;
         if ([self isCancelled]) {
+            // 被取消
             [self performSelector:@selector(_cancelOperation) onThread:[[self class] _networkThread] withObject:nil waitUntilDone:NO modes:@[NSDefaultRunLoopMode]];
             self.finished = YES;
         } else if ([self isReady] && ![self isFinished] && ![self isExecuting]) {
-            if (!_request) {
+            // ready but not executing
+            if (!_request) {    // if input request is nil,finish the request
                 self.finished = YES;
                 if (_completion) {
                     NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:@{NSLocalizedDescriptionKey:@"request in nil"}];
                     _completion(nil, _request.URL, YYWebImageFromNone, YYWebImageStageFinished, error);
                 }
-            } else {
+            } else {    // otherwise requesting for image
                 self.executing = YES;
                 [self performSelector:@selector(_startOperation) onThread:[[self class] _networkThread] withObject:nil waitUntilDone:NO modes:@[NSDefaultRunLoopMode]];
                 if ((_options & YYWebImageOptionAllowBackgroundTask) && ![UIApplication isAppExtension]) {
                     __weak __typeof__ (self) _self = self;
                     if (_taskID == UIBackgroundTaskInvalid) {
                         _taskID = [[UIApplication sharedExtensionApplication] beginBackgroundTaskWithExpirationHandler:^{
+                            // 在开启后台任务后，如果任务未完成，则会走到这里，在这里需要清理相关资源，并结束后台任务
                             __strong __typeof (_self) self = _self;
                             if (self) {
-                                [self cancel];
+                                [self cancel];  // 结束后台任务
                                 self.finished = YES;
                             }
                         }];
@@ -719,6 +785,8 @@ static void URLInBlackListAdd(NSURL *url) {
     }
     [_lock unlock];
 }
+
+#pragma mark - property setter
 
 - (void)setExecuting:(BOOL)executing {
     [_lock lock];
@@ -770,15 +838,17 @@ static void URLInBlackListAdd(NSURL *url) {
     [_lock unlock];
     return cancelled;
 }
-
+// 支持并发
 - (BOOL)isConcurrent {
     return YES;
 }
-
+// 支持异步
 - (BOOL)isAsynchronous {
     return YES;
 }
 
+
+/// learn: 是否自动发送通知
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
     if ([key isEqualToString:@"isExecuting"] ||
         [key isEqualToString:@"isFinished"] ||
@@ -788,6 +858,7 @@ static void URLInBlackListAdd(NSURL *url) {
     return [super automaticallyNotifiesObserversForKey:key];
 }
 
+/// learn: 最好实现该方法，可以在 NSLog 中实现 po 对象
 - (NSString *)description {
     NSMutableString *string = [NSMutableString stringWithFormat:@"<%@: %p ",self.class, self];
     [string appendFormat:@" executing:%@", [self isExecuting] ? @"YES" : @"NO"];
