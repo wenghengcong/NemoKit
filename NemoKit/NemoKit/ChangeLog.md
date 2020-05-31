@@ -13,3 +13,5 @@ QMUI                                    v4.0.3                  https://github.c
 
 DateTools           v4.0.0          https://github.com/MatthewYork/DateTools
 
+AAChartKit          v4.0.0          https://github.com/AAChartModel/AAChartKit   
+        合并的最后一次提交：2020.5.8 7aea3b820722f25f1c41993362074c9ca0db15f2

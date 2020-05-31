@@ -1521,16 +1521,16 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     pthread_mutex_t _lock; // recursive lock
     
     BOOL _sourceTypeDetected;   // file type has detected
-    CGImageSourceRef _source;
+    CGImageSourceRef _source;       // 由 data 创建的 image 对象，该对象已经是 Image 了，所以很多属性可以直接读取，一些操作也可以直接进行
     yy_png_info *_apngSource;
 #if YYIMAGE_WEBP_ENABLED
     WebPDemuxer *_webpSource;
 #endif
     
-    UIImageOrientation _orientation;
-    dispatch_semaphore_t _framesLock;       // 图片帧相关的说
+    UIImageOrientation _orientation;    // 图片的方向
+    dispatch_semaphore_t _framesLock;       // 图片帧相关的锁
     NSArray *_frames; ///< Array<GGImageDecoderFrame>, without image
-    BOOL _needBlend;
+    BOOL _needBlend;        // 是否需要进行混合
     NSUInteger _blendFrameIndex;
     CGContextRef _blendCanvas;
 }
@@ -2060,6 +2060,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     dispatch_semaphore_signal(_framesLock);
 }
 
+// learn: CF_RETURNS_RETAINED 标识返回的是一个 CF 对象，且需要调用方释放返回的对象
 - (CGImageRef)_newUnblendedImageAtIndex:(NSUInteger)index
                          extendToCanvas:(BOOL)extendToCanvas
                                 decoded:(BOOL *)decoded CF_RETURNS_RETAINED {

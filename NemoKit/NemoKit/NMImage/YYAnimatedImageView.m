@@ -391,13 +391,13 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 - (void)didReceiveMemoryWarning:(NSNotification *)notification {
     [_requestQueue cancelAllOperations];
     [_requestQueue addOperationWithBlock: ^{
-        _incrBufferCount = -60 - (int)(arc4random() % 120); // about 1~3 seconds to grow back..
-        NSNumber *next = @((_curIndex + 1) % _totalFrameCount);
+        self->_incrBufferCount = -60 - (int)(arc4random() % 120); // about 1~3 seconds to grow back..
+        NSNumber *next = @((self->_curIndex + 1) % self->_totalFrameCount);
         LOCK(
-             NSArray * keys = _buffer.allKeys;
+             NSArray * keys = self->_buffer.allKeys;
              for (NSNumber * key in keys) {
             if (![key isEqualToNumber:next]) { // keep the next frame for smoothly animation
-                [_buffer removeObjectForKey:key];
+                [self->_buffer removeObjectForKey:key];
             }
         }
              )//LOCK
@@ -549,10 +549,10 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     
     dispatch_async_on_main_queue(^{
         LOCK(
-             [_requestQueue cancelAllOperations];
-             [_buffer removeAllObjects];
+             [self->_requestQueue cancelAllOperations];
+             [self->_buffer removeAllObjects];
              [self willChangeValueForKey:@"currentAnimatedImageIndex"];
-             _curIndex = currentAnimatedImageIndex;
+             self->_curIndex = currentAnimatedImageIndex;
              [self didChangeValueForKey:@"currentAnimatedImageIndex"];
              _curFrame = [_curAnimatedImage animatedImageFrameAtIndex:_curIndex];
              if (_curImageHasContentsRect) {
