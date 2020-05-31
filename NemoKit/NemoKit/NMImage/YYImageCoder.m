@@ -46,6 +46,7 @@ __has_include("webp/demux.h")  && __has_include("webp/mux.h")
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Utility (for little endian platform)
 
+// 十六进制数转为十进制
 #define YY_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 #define YY_TWO_CC(c1,c2) ((uint16_t)(((c2) << 8) | (c1)))
 
@@ -880,6 +881,15 @@ CGImageRef YYCGImageCreateDecodedCopy(CGImageRef imageRef, BOOL decodeForDisplay
         // same as UIGraphicsBeginImageContext() and -[UIView drawRect:]
         CGBitmapInfo bitmapInfo = kCGBitmapByteOrder32Host;
         bitmapInfo |= hasAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst;
+        /* learn: CGBitmapContextCreate
+         * data    指向要渲染的绘制内存的地址。这个内存块的大小至少是（bytesPerRow*height）个字节
+         * width    bitmap的宽度,单位为像素
+         * height    bitmap的高度,单位为像素
+         * bitsPerComponent    内存中像素的每个组件的位数.例如，对于32位像素格式和RGB 颜色空间，你应该将这个值设为8.
+         * bytesPerRow    bitmap的每一行在内存所占的比特数
+         * colorspace    bitmap上下文使用的颜色空间。
+         * bitmapInfo    指定bitmap是否包含alpha通道，像素中alpha通道的相对位置，像素组件是整形还是浮点型等信息的字符串。
+         */
         CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 0, YYCGColorSpaceGetDeviceRGB(), bitmapInfo);
         if (!context) return NULL;
         CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef); // decode
@@ -1002,6 +1012,7 @@ NSInteger YYUIImageOrientationToEXIFValue(UIImageOrientation orientation) {
     }
 }
 
+// TODO: 归类到分类中，目前在UIImage+NMUI，修正图片方向
 CGImageRef YYCGImageCreateCopyWithOrientation(CGImageRef imageRef, UIImageOrientation orientation, CGBitmapInfo destBitmapInfo) {
     if (!imageRef) return NULL;
     if (orientation == UIImageOrientationUp) return (CGImageRef)CFRetain(imageRef);
@@ -1063,10 +1074,15 @@ YYImageType YYImageDetectType(CFDataRef data) {
     uint64_t length = CFDataGetLength(data);
     if (length < 16) return YYImageTypeUnknown;
     
+    // learn: CFDataGetBytePtr 获取CFDataRef的起始地址，并将其转为 1 字节（8bit）的 char *类型
+    // bytes 是一个指向 char 变量的指针类型，该指向当前未 data 起始的 char 长度（8 比特-1 字节）的变量
     const char *bytes = (char *)CFDataGetBytePtr(data);
     
+    // 将 bytes 转为 4 字节（32bit）的整数
     uint32_t magic4 = *((uint32_t *)bytes);
+    // 通过比对前 4 个字节是否相等
     switch (magic4) {
+        // YY_FOUR_CC 将十六进制数转为十进制，以和 magic4比对
         case YY_FOUR_CC(0x4D, 0x4D, 0x00, 0x2A): { // big endian TIFF
             return YYImageTypeTIFF;
         } break;
@@ -1504,7 +1520,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
 @implementation YYImageDecoder {
     pthread_mutex_t _lock; // recursive lock
     
-    BOOL _sourceTypeDetected;
+    BOOL _sourceTypeDetected;   // file type has detected
     CGImageSourceRef _source;
     yy_png_info *_apngSource;
 #if YYIMAGE_WEBP_ENABLED
@@ -1512,7 +1528,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
 #endif
     
     UIImageOrientation _orientation;
-    dispatch_semaphore_t _framesLock;
+    dispatch_semaphore_t _framesLock;       // 图片帧相关的说
     NSArray *_frames; ///< Array<GGImageDecoderFrame>, without image
     BOOL _needBlend;
     NSUInteger _blendFrameIndex;
@@ -1558,6 +1574,10 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     return result;
 }
 
+
+/// 读取图片帧
+/// @param index 帧数
+/// @param decodeForDisplay 是否解码显示
 - (YYImageFrame *)frameAtIndex:(NSUInteger)index decodeForDisplay:(BOOL)decodeForDisplay {
     YYImageFrame *result = nil;
     pthread_mutex_lock(&_lock);
@@ -1594,6 +1614,9 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
 
 #pragma private (wrap)
 
+/// update
+/// @param data 需要解码的数据
+/// @param final 是否解码完成
 - (BOOL)_updateData:(NSData *)data final:(BOOL)final {
     if (_finalized) return NO;
     if (data.length < _data.length) return NO;
@@ -1626,7 +1649,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
         extendToCanvas = YES;
     }
     
-    if (!_needBlend) {
+    if (!_needBlend) {      // 不需要图片混合
         CGImageRef imageRef = [self _newUnblendedImageAtIndex:index extendToCanvas:extendToCanvas decoded:&decoded];
         if (!imageRef) return nil;
         if (decodeForDisplay && !decoded) {
@@ -1637,6 +1660,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
                 decoded = YES;
             }
         }
+        // 返回解码图片
         UIImage *image = [UIImage imageWithCGImage:imageRef scale:_scale orientation:_orientation];
         CFRelease(imageRef);
         if (!image) return nil;
@@ -1933,6 +1957,8 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     dispatch_semaphore_signal(_framesLock);
 }
 
+
+/// ImageIO 类型图片的解码：主要是对属性的解析，真正的图片解码创建在_frameAtIndex:decodeForDisplay中
 - (void)_updateSourceImageIO {
     _width = 0;
     _height = 0;
@@ -1942,6 +1968,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     _frames = nil;
     dispatch_semaphore_signal(_framesLock);
     
+    // learn: _source，图片source对象
     if (!_source) {
         if (_finalized) {
             _source = CGImageSourceCreateWithData((__bridge CFDataRef)_data, NULL);
@@ -1979,6 +2006,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     /*
      ICO, GIF, APNG may contains multi-frame.
      */
+    // 计算图片帧
     NSMutableArray *frames = [NSMutableArray new];
     for (NSUInteger i = 0; i < _frameCount; i++) {
         _YYImageDecoderFrame *frame = [_YYImageDecoderFrame new];
@@ -1993,7 +2021,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
             NSTimeInterval duration = 0;
             NSInteger orientationValue = 0, width = 0, height = 0;
             CFTypeRef value = NULL;
-            
+            // 设置对应图片的 properties
             value = CFDictionaryGetValue(properties, kCGImagePropertyPixelWidth);
             if (value) CFNumberGetValue(value, kCFNumberNSIntegerType, &width);
             value = CFDictionaryGetValue(properties, kCGImagePropertyPixelHeight);
@@ -2333,7 +2361,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     switch (type) {
         case YYImageTypeJPEG:
         case YYImageTypeJPEG2000: {
-            _quality = 0.9;
+            _quality = 0.9;     // 
         } break;
         case YYImageTypeTIFF:
         case YYImageTypeBMP:
@@ -2381,6 +2409,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     [_durations addObject:@(duration)];
 }
 
+// 通过 ImageIO 来进行压缩
 - (BOOL)_imageIOAvaliable {
     switch (_type) {
         case YYImageTypeJPEG:
@@ -2402,6 +2431,10 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     }
 }
 
+
+/// 创建一个存储对象
+/// @param dest 存储对象需要的 url 或者 data 对象
+/// @param count 图像个数
 - (CGImageDestinationRef)_newImageDestination:(id)dest imageCount:(NSUInteger)count CF_RETURNS_RETAINED {
     if (!dest) return nil;
     CGImageDestinationRef destination = NULL;
@@ -2413,7 +2446,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     } else if ([dest isKindOfClass:[NSMutableData class]]) {
         destination = CGImageDestinationCreateWithData((CFMutableDataRef)dest, YYImageTypeToUTType(_type), count, NULL);
     }
-    return destination;
+    return destination; // 返回后，注意释放
 }
 
 - (void)_encodeImageWithDestination:(CGImageDestinationRef)destination imageCount:(NSUInteger)count {
@@ -2490,8 +2523,8 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     BOOL suc = NO;
     if (destination) {
         [self _encodeImageWithDestination:destination imageCount:count];
-        suc = CGImageDestinationFinalize(destination);
-        CFRelease(destination);
+        suc = CGImageDestinationFinalize(destination);  // 完成固化
+        CFRelease(destination); // 注意释放
     }
     if (suc && data.length > 0) {
         return data;

@@ -109,7 +109,7 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
     // Decode single image:
     NSData *data = [NSData dataWithContentOfFile:@"/tmp/image.webp"];
     YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:2.0];
-    UIImage image = [decoder frameAtIndex:0 decodeForDisplay:YES].image;
+    UIImage *image = [decoder frameAtIndex:0 decodeForDisplay:YES].image;
  
     // Decode image during download:
     NSMutableData *data = [NSMutableData new];
