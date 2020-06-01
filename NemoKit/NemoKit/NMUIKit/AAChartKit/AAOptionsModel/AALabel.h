@@ -31,6 +31,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AAGlobalMacro.h"
+
 @class AAStyle;
 
 NS_ASSUME_NONNULL_BEGIN

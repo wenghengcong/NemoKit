@@ -33,6 +33,8 @@
 #import <Foundation/Foundation.h>
 #import "AASeriesElement.h"
 #import "AAPlotLinesElement.h"
+#import "AAGlobalMacro.h"
+
 @class AAScrollablePlotArea;
 
 #define AACHARTKIT_EXTERN     extern __attribute__((visibility ("default")))

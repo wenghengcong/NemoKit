@@ -31,6 +31,7 @@
  */
 
 #import "AAPlotLinesElement.h"
+#import "AAGlobalMacro.h"
 
 @implementation AAPlotLinesElement
 

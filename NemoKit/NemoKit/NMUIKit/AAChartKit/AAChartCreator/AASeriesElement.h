@@ -31,6 +31,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AAGlobalMacro.h"
 
 @class AAMarker,AADataLabels,AATooltip,AAStates,AAShadow;
 

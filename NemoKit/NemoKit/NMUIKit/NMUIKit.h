@@ -334,4 +334,8 @@ static NSString * const NMUIKIT_VERSION = @"1.0.0";
 #import "NMUIFeedBackEffect.h"
 #endif
 
+#if __has_include("AAChartView.h")
+#import "AAChartView.h"
+#endif
+
 #endif /* NMUIKit_h */

@@ -31,6 +31,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AAGlobalMacro.h"
+
 @class AALabel;
 
 @interface AAPlotLinesElement : NSObject

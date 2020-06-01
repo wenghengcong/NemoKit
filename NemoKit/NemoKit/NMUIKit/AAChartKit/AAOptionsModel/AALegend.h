@@ -33,6 +33,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AAChartModel.h"
+#import "AAGlobalMacro.h"
+
 @class AAItemStyle;
 
 @interface AALegend : NSObject

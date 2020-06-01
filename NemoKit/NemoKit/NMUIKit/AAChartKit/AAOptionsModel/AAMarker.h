@@ -32,6 +32,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AAGlobalMacro.h"
 
 @class AAMarkerStates, AAMarkerHover;
 

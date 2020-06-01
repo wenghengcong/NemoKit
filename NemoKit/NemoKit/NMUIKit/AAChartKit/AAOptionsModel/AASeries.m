@@ -32,6 +32,7 @@
  */
 
 #import "AASeries.h"
+#import "AAGlobalMacro.h"
 
 @implementation AASeries
 

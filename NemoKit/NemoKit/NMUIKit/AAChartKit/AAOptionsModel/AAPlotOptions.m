@@ -31,6 +31,7 @@
  */
 
 #import "AAPlotOptions.h"
+#import "AAGlobalMacro.h"
 
 @implementation AAPlotOptions
 

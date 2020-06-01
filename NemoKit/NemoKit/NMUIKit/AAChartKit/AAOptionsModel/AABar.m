@@ -31,6 +31,7 @@
  */
 
 #import "AABar.h"
+#import "AAGlobalMacro.h"
 
 @implementation AABar
 
