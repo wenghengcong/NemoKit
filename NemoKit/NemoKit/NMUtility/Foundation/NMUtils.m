@@ -102,7 +102,7 @@ static NSString *NMBF_getBundleFilePath(NSString* filename, NSString* ext) {
 BOOL NMBF_creatDirInDocument(NSString *dirName)
 {
     if( !NMBF_validateString(dirName) ){
-        return @"";
+        return NO;
     }
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *pathDocuments = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface NSArray<__covariant ObjectType> (YYAdd)
 
-/**
+/** 
  Creates and returns an array from a specified property list data.
  
  @param plist   A property list data whose root object is an array.

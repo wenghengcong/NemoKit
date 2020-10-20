@@ -10,7 +10,7 @@
 #define NMBCoreFoundationUtilsHeader_h
 
 #if __has_include("NMUtils.h")
-#import "NMUtils.h"
+//#import "NMUtils.h"
 #endif
 
 #if __has_include("NMBFHelper.h")

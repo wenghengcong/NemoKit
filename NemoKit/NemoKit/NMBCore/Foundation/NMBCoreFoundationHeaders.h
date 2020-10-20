@@ -65,4 +65,8 @@
 #import "NSData+NMBF.h"
 #endif
 
+#if __has_include("NSDate+NMBF.h")
+#import "NSDate+NMBF.h"
+#endif
+
 #endif /* NMBCoreFoundationHeaders_h */
