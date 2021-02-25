@@ -1,0 +1,6 @@
+framework module NMUIKit {
+  umbrella header "NMUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

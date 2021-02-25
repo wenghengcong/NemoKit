@@ -1,0 +1,6 @@
+framework module NMUtility {
+  umbrella header "NMUtility-umbrella.h"
+
+  export *
+  module * { export * }
+}

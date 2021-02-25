@@ -1,0 +1,41 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - Kiwi (3.0.0)
+  - NMCore (0.1.0)
+  - NMUIKit (0.1.0)
+  - NMUtility (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - Kiwi
+  - NMCore (from `~/MyApps/NMCore/NMCore/`)
+  - NMUIKit (from `~/MyApps/NMUIKit/NMUIKit/`)
+  - NMUtility (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FBSnapshotTestCase
+    - Kiwi
+
+EXTERNAL SOURCES:
+  NMCore:
+    :path: "~/MyApps/NMCore/NMCore/"
+  NMUIKit:
+    :path: "~/MyApps/NMUIKit/NMUIKit/"
+  NMUtility:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
+  NMCore: dd21820bf5c16056799bbc074cd7307a2cee5302
+  NMUIKit: efb7963641b468fb529d7d96bd97e7380b0dc57c
+  NMUtility: 00b91058ada6df9b6901bfdc24ee9982e34fae53
+
+PODFILE CHECKSUM: 699cf2652ee23145303c3a926ab1d0168955184a
+
+COCOAPODS: 1.6.2

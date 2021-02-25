@@ -1,0 +1,6 @@
+framework module Pods_NMUtility_Example {
+  umbrella header "Pods-NMUtility_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

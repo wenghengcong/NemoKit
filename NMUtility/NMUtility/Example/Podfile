@@ -1,0 +1,17 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'NMUtility_Example' do
+  pod 'NMUtility', :path => '../'
+
+  target 'NMUtility_Tests' do
+    inherit! :search_paths
+
+    pod 'NMCore', :path => '~/MyApps/NMCore/NMCore/'
+    pod 'NMUIKit', :path => '~/MyApps/NMUIKit/NMUIKit/'
+
+    pod 'Kiwi'
+    pod 'FBSnapshotTestCase'
+  end
+end

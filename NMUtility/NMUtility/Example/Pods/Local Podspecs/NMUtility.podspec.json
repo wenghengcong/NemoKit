@@ -1,0 +1,30 @@
+{
+  "name": "NMUtility",
+  "version": "0.1.0",
+  "summary": "A short description of NMUtility.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/wenghengcong/NMUtility",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wenghengcong": "wenghengcong@icloud.com"
+  },
+  "source": {
+    "git": "https://github.com/wenghengcong/NMUtility.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": [
+    "NMUtility/*.{h,m}",
+    "NMUtility/Classes/**/*"
+  ],
+  "resources": [
+    "NMUtility/Assets/*.{xcassets,plist,png}",
+    "NMUtility/**/*.{md}"
+  ],
+  "public_header_files": "NMUtility/**/*.{h}"
+}

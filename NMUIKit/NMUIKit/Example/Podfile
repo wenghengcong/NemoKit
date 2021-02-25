@@ -1,0 +1,14 @@
+use_frameworks!
+install!'cocoapods',:deterministic_uuids=>false
+platform :ios, '8.0'
+
+target 'NMUIKit_Example' do
+  pod 'NMUIKit', :path => '../'
+
+  target 'NMUIKit_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+    pod 'FBSnapshotTestCase'
+  end
+end

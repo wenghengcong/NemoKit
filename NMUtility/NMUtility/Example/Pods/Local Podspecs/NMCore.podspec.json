@@ -1,0 +1,27 @@
+{
+  "name": "NMCore",
+  "version": "0.1.0",
+  "summary": "A short description of NMCore.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/wenghengcong/NMCore",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wenghengcong": "wenghengcong@icloud.com"
+  },
+  "source": {
+    "git": "https://github.com/wenghengcong/NMCore.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "NMCore/**/*.{h,m}",
+  "resources": [
+    "NMCategory/NMCore/*.{xcassets,plist,png,bundle}",
+    "NMCore/**/*.{md}"
+  ],
+  "public_header_files": "NMCore/**/*.{h}"
+}
